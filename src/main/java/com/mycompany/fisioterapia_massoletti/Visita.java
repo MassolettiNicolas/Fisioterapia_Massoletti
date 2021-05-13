@@ -11,7 +11,7 @@ import java.time.*;
  *
  * @author Nicolas
  */
-public class Visita
+public class Visita  
 {
     //Attributi.
     private int codiceIdentificativo;   //Un codice numerico univoco per ogni paziente.

@@ -59,7 +59,8 @@ public class Centro
     }
     
     //2 --> Eliminare una visita prenotata, più di un metodo.
-    public void mostraPrenotazioni(String cognomePaziente, String nomePaziente, Visita[] arrayVisite)
+    //RIGUARDARE I METODI DI ELIMINA.
+    /*public void mostraPrenotazioni(String cognomePaziente, String nomePaziente, Visita[] arrayVisite)
     {
         int c=0;
         
@@ -107,5 +108,20 @@ public class Centro
         }
         
         nVisitePresenti--;
+    }*/
+    
+    //3 --> Eseguire una visita.
+    //CHIEDERE COME SI SCEGLIE LA VISITA DA ESEGUIRE.
+    
+    //4 --> Visualizzare le visite di un determinato giorno.
+    public void visualizzaPrenotazioniPerGiorno(int anno, int mese, int giorno)
+    {
+        for(int i=0;i<getNVisitePresenti();i++)
+        {
+            if(calendarioVisite[i].getAppuntamento().getYear()==anno && calendarioVisite[i].getAppuntamento().getMonthValue()==mese && calendarioVisite[i].getAppuntamento().getDayOfMonth()==giorno)
+            {
+                System.out.println(calendarioVisite[i].toString());
+            }
+        }
     }
 }
