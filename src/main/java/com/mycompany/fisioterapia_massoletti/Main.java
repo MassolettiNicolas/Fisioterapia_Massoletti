@@ -51,6 +51,8 @@ public class Main
         {
             if(arrayVisite[i]!=null)
                 System.out.println(arrayVisite[i].toString());
-        }          
+        }       
+        
+        System.out.println(v1.toString());
     }
 }
