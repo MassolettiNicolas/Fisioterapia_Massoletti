@@ -21,7 +21,7 @@ public class Main
         Visita v3=new Visita();
         Visita v4=new Visita(3,"massoletti","nicolas","dfbdb","ex","bonsi","giuse",2021,4,13,4,6,"S");
         Visita v5=new Visita(4,"Massoletti","Nicolas","dfbdb","ex","bonsi","giuse",2021,4,13,4,6,"S");
-        /*System.out.println(v1.toString());
+        System.out.println(v1.toString());
         System.out.println(v2.toString());
         System.out.println(v3.toString());
         
@@ -29,8 +29,8 @@ public class Main
         c1.registraPrenotazione(v1);
         c1.registraPrenotazione(v2);
         c1.registraPrenotazione(v3);
-        System.out.println(c1.getNVisitePresenti());*/
-        Centro c1=new Centro();
+        System.out.println(c1.getNVisitePresenti());
+        //Centro c1=new Centro();
         c1.registraPrenotazione(v1);
         c1.registraPrenotazione(v2);
         c1.registraPrenotazione(v3);
@@ -53,6 +53,6 @@ public class Main
                 System.out.println(arrayVisite[i].toString());
         }       
         
-        System.out.println(v1.toString());
+        System.out.println(v1.toString()); 
     }
 }
