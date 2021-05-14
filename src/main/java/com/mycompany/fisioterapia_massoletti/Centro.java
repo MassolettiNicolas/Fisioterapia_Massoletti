@@ -161,4 +161,36 @@ public class Centro
         
         f1.close();
     }
+    
+    //CHIEDERE COME SISTEMARE IL PROBLEMA DI SALVA DATI E CARICA DATI.
+    /*//7 --> Salva dati su file binario e carica all'avvio del software.
+    //Serializzazione su file binario.
+    //Salva dati.
+    public void salvaCentro(String nomeFile) throws FileNotFoundException, IOException
+    {
+        FileOutputStream f1=new FileOutputStream(nomeFile);
+        ObjectOutputStream outputStream=new ObjectOutputStream(f1); 
+        outputStream.writeObject(this);   //Serializzo questo stesso centro, scrivo questo centro su di un file binario.
+        outputStream.flush();
+        outputStream.close();
+    }
+    
+    //Carica dati.
+    public Centro caricaCentro(String nomeFile) throws FileNotFoundException, IOException, FileException
+    {
+        FileInputStream f1=new FileInputStream(nomeFile);
+        ObjectInputStream inputStream=new ObjectInputStream(f1); 
+        Centro c;
+        try 
+        {
+            c=(Centro)inputStream.readObject();
+            inputStream.close();
+            return c;
+        } 
+        catch (ClassNotFoundException ex) 
+        {
+            inputStream.close();
+            throw new FileException("Errore nella lettura del file!");
+        }
+    }*/
 }

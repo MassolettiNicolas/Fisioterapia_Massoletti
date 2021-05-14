@@ -5,8 +5,8 @@
  */
 package com.mycompany.fisioterapia_massoletti;
 
-import eccezioni.FileException;
-import java.io.IOException;
+import eccezioni.*;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -38,7 +38,7 @@ public class Main
         c1.registraPrenotazione(v3);*/
         c1.registraPrenotazione(v4);
         c1.registraPrenotazione(v5);
-        Visita[] arrayVisite=new Visita[c1.getNVisitePresenti()];
+        //Visita[] arrayVisite=new Visita[c1.getNVisitePresenti()];
         //c1.mostraPrenotazioni("Massoletti","Nicolas",arrayVisite);
         /*Scanner tastiera=new Scanner(System.in);
         int codice,easy=0;
@@ -69,6 +69,37 @@ public class Main
         catch(FileException e2)
         {
             System.out.println(e2.toString());
+        }*/
+        /*String nomeFileBinario="centro.bin";
+        
+        //Deserializzazione.
+        try
+        {
+            c1=c1.caricaCentro(nomeFileBinario);
+            System.out.println("Dati caricati correttamente!");
+        }
+        catch(FileNotFoundException ex)
+        {
+            System.out.println("Impossibile accedere al file, i dati non sono stati caricati!");
+        }
+        catch(FileException ex)
+        {
+            System.out.println("Errore di lettura, i dati non sono stati caricati!");
+        } 
+        catch (IOException ex) 
+        {
+            System.out.println("Impossibile accedere al file!");
+        }
+        
+        //Serializzazione.
+        try 
+        {
+            c1.salvaCentro(nomeFileBinario);
+            System.out.println("Dati salvati correttamente!");
+        } 
+        catch (IOException ex) 
+        {
+            System.out.println("Impossibile accedere al file, i dati non sono stati salvati!");
         }*/
     }
 }
