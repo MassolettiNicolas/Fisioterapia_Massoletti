@@ -42,7 +42,7 @@ public class Ordinatore
     }
     
     //Ordina un array di Visite in ordine alfabetico. 
-    public static Visita[] selectionSortAlfabeticoAutoreTitolo(Visita[] a)
+    public static Visita[] selectionSortAlfabeticoVisiteNonSvolte(Visita[] a)
     {
         Visita[] ordinato=new Visita[a.length];
         

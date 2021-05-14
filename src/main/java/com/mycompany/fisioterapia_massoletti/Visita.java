@@ -175,6 +175,7 @@ public class Visita
     
     //equals.
     //Override.
+    //MODIFICARE GUARDANDO GLI APPUNTI DI LAINI.
     public boolean equals(Visita visita)
     {
         if(this.getCodiceIdentificativo()==visita.getCodiceIdentificativo() && this.cognome.compareToIgnoreCase(visita.getCognome())==0 && this.nome.compareToIgnoreCase(visita.getNome())==0 && this.CFPaziente.compareToIgnoreCase(visita.getCFPaziente())==0 && this.descrizioneVisita.compareToIgnoreCase(visita.getDescrizioneVisita())==0 && this.cognomeFisioterapista.compareToIgnoreCase(visita.getCognomeFisioterapista())==0 && this.nomeFisioterapista.compareToIgnoreCase(visita.getNomeFisioterapista())==0 && this.appuntamento.isEqual(visita.getAppuntamento()) && this.visitaSvolta.compareToIgnoreCase(visita.getVisitaSvolta())==0)

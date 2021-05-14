@@ -5,6 +5,8 @@
  */
 package com.mycompany.fisioterapia_massoletti;
 
+import altro.Ordinatore;
+
 /**
  *
  * @author Nicolas
@@ -114,6 +116,7 @@ public class Centro
     //CHIEDERE COME SI SCEGLIE LA VISITA DA ESEGUIRE.
     
     //4 --> Visualizzare le visite di un determinato giorno.
+    //CHIEDERE SE VA BENE FARE SOUT QUI OPPURE NO (SE NO RESTITUISCI UNA STRINGA COSTRUITA CON s+=calendarioVisite[i].toString()).
     public void visualizzaPrenotazioniPerGiorno(int anno, int mese, int giorno)
     {
         for(int i=0;i<getNVisitePresenti();i++)
@@ -126,4 +129,25 @@ public class Centro
     }
     
     //5 --> Visualizzare le visite non ancora svolte in ordine alfabetico per paziente.
+    //CHIEDERE SE VA BENE FARE SOUT QUI OPPURE NO (SE NO RESTITUISCI UNA STRINGA COSTRUITA CON s+=elencoOrdinato[j].toString()).
+    public void visualizzaVisiteNonSvolteOrdineAlfabetico()
+    {
+        Visita[] elencoOrdinato=new Visita[getNVisitePresenti()];
+        int c=0;
+        String confronto="N";   //La stringa che utilizzo per confrontare.
+        
+        for(int i=0;i<elencoOrdinato.length;i++)
+        {
+            if(calendarioVisite[i]!=null && calendarioVisite[i].getVisitaSvolta().compareToIgnoreCase(confronto)==0)
+            {
+                elencoOrdinato[c]=calendarioVisite[i];
+                c++;
+            }
+        }
+        
+        elencoOrdinato=Ordinatore.selectionSortAlfabeticoVisiteNonSvolte(elencoOrdinato);
+        
+        for(int j=0;j<elencoOrdinato.length;j++)
+            System.out.println(elencoOrdinato[j].toString());
+    }
 }
