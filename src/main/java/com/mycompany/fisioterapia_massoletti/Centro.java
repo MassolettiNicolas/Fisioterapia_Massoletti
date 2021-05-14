@@ -5,7 +5,10 @@
  */
 package com.mycompany.fisioterapia_massoletti;
 
-import altro.Ordinatore;
+import altro.*;
+import eccezioni.*;
+import file.*;
+import java.io.*;
 
 /**
  *
@@ -62,7 +65,7 @@ public class Centro
     
     //2 --> Eliminare una visita prenotata, più di un metodo.
     //RIGUARDARE I METODI DI ELIMINA.
-    /*public void mostraPrenotazioni(String cognomePaziente, String nomePaziente, Visita[] arrayVisite)
+    public void mostraPrenotazioni(String cognomePaziente, String nomePaziente, Visita[] arrayVisite)
     {
         int c=0;
         
@@ -83,8 +86,7 @@ public class Centro
         {
             if(arrayVisite[i]!=null && arrayVisite[i].getCodiceIdentificativo()==codiceID)
             {
-                aggiornaPosizione(i);
-                aggiornaPosizioneArrayPaziente(i,arrayVisite);
+                aggiornaPosizione(i, arrayVisite);
                 return 0;
             }
         }
@@ -92,26 +94,17 @@ public class Centro
         return -1;
     }
     
-    private void aggiornaPosizione(int posizione)
+    private void aggiornaPosizione(int posizione, Visita[] arrayVisite)
     {
         for(int i=posizione;i<getNVisitePresenti()-1;i++)
         {
             calendarioVisite[i]=calendarioVisite[i+1];
-        }
-        
-        nVisitePresenti--;
-    }
-    
-    private void aggiornaPosizioneArrayPaziente(int posizione, Visita[] arrayVisite)
-    {
-        for(int i=posizione;i<getNVisitePresenti()-1;i++)
-        {
             arrayVisite[i]=arrayVisite[i+1];
         }
         
         nVisitePresenti--;
-    }*/
-    
+    }
+ 
     //3 --> Eseguire una visita.
     //CHIEDERE COME SI SCEGLIE LA VISITA DA ESEGUIRE.
     
@@ -150,4 +143,25 @@ public class Centro
         for(int j=0;j<elencoOrdinato.length;j++)
             System.out.println(elencoOrdinato[j].toString());
     }
+    
+    //6 --> Esportare in CSV.
+    /*public void esportaLibri(String nomeFile) throws IOException, FileException 
+    {
+        TextFile f1=new TextFile(nomeFile,'W');
+        Visita visita;
+        
+        for(int i=0;i<NUM_RIPIANI;i++)
+        {
+            for(int j=0;j<ripiani[i].getNumMaxVolumi();j++)
+            {
+                libro=getLibro(i,j);
+                if(libro!=null)
+                {
+                    f1.toFile(i+";"+j+";"+libro.getTitolo()+";"+libro.getAutore()+";"+libro.getNumeroPagine()+";"); 
+                }
+            }
+        }
+        
+        f1.close();
+    }*/
 }
