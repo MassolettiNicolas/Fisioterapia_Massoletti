@@ -145,23 +145,20 @@ public class Centro
     }
     
     //6 --> Esportare in CSV.
-    /*public void esportaLibri(String nomeFile) throws IOException, FileException 
+    public void esportaLibri(String nomeFile) throws IOException, FileException 
     {
         TextFile f1=new TextFile(nomeFile,'W');
         Visita visita;
         
-        for(int i=0;i<NUM_RIPIANI;i++)
+        for(int i=0;i<calendarioVisite.length;i++)
         {
-            for(int j=0;j<ripiani[i].getNumMaxVolumi();j++)
+            visita=calendarioVisite[i];
+            if(visita!=null)
             {
-                libro=getLibro(i,j);
-                if(libro!=null)
-                {
-                    f1.toFile(i+";"+j+";"+libro.getTitolo()+";"+libro.getAutore()+";"+libro.getNumeroPagine()+";"); 
-                }
+                f1.toFile(visita.getCodiceIdentificativo()+";"+visita.getCognome()+";"+visita.getNome()+";"+visita.getCFPaziente()+";"+visita.getDescrizioneVisita()+";"+visita.getCognomeFisioterapista()+";"+visita.getNomeFisioterapista()+";"+visita.getAppuntamento()+";"+visita.getVisitaSvolta()+";"); 
             }
         }
         
         f1.close();
-    }*/
+    }
 }

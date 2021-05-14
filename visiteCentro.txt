@@ -1,0 +1,4 @@
+1;Massoletti;Nicolas;abcde;Esercizi Rinforzanti;Bonsi;Giuseppe;2021-05-12T15:15;N;
+2;m;n;dfbdb;ex;bonsi;giuse;2021-04-13T04:06;S;
+3;massoletti;nicolas;dfbdb;ex;bonsi;giuse;2021-04-13T04:06;S;
+4;Massoletti;Nicolas;dfbdb;ex;bonsi;giuse;2021-04-13T04:06;S;
