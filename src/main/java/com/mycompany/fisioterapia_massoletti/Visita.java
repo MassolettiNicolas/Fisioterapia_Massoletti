@@ -11,7 +11,7 @@ import java.time.*;
  *
  * @author Nicolas
  */
-public class Visita  
+public class Visita 
 {
     //Attributi.
     private int codiceIdentificativo;   //Un codice numerico univoco per ogni paziente.
@@ -175,9 +175,11 @@ public class Visita
     
     //equals.
     //Override.
-    //MODIFICARE GUARDANDO GLI APPUNTI DI LAINI.
-    public boolean equals(Visita visita)
+    //CHIEDERE SE EQUALS VA BENE COSI.
+    public boolean equals(Object o)
     {
+        Visita visita;
+        visita=(Visita)o;
         if(this.getCodiceIdentificativo()==visita.getCodiceIdentificativo() && this.cognome.compareToIgnoreCase(visita.getCognome())==0 && this.nome.compareToIgnoreCase(visita.getNome())==0 && this.CFPaziente.compareToIgnoreCase(visita.getCFPaziente())==0 && this.descrizioneVisita.compareToIgnoreCase(visita.getDescrizioneVisita())==0 && this.cognomeFisioterapista.compareToIgnoreCase(visita.getCognomeFisioterapista())==0 && this.nomeFisioterapista.compareToIgnoreCase(visita.getNomeFisioterapista())==0 && this.appuntamento.isEqual(visita.getAppuntamento()) && this.visitaSvolta.compareToIgnoreCase(visita.getVisitaSvolta())==0)
             return true;
         else 
