@@ -20,7 +20,7 @@ public class Main
         Visita v1=new Visita(1,"Massoletti","Nicolas","abcde","Esercizi Rinforzanti","Bonsi","Giuseppe",2021,5,12,15,15,"N");
         //Visita v2=new Visita(v1);
         Visita v2=new Visita(2,"m","n","dfbdb","ex","bonsi","giuse",2021,4,13,4,6,"S");
-        //Visita v3=new Visita();
+        Visita v3=new Visita();
         Visita v4=new Visita(3,"massoletti","nicolas","dfbdb","ex","bonsi","giuse",2021,4,13,4,6,"S");
         Visita v5=new Visita(4,"Massoletti","Nicolas","dfbdb","ex","bonsi","giuse",2021,4,13,4,6,"S");
         /*System.out.println(v1.toString());
@@ -30,7 +30,7 @@ public class Main
         Centro c1=new Centro();
         c1.registraPrenotazione(v1);
         c1.registraPrenotazione(v2);
-        //c1.registraPrenotazione(v3);
+        c1.registraPrenotazione(v3);
         //System.out.println(c1.getNVisitePresenti());
         //Centro c1=new Centro();
         /*c1.registraPrenotazione(v1);
@@ -100,6 +100,18 @@ public class Main
         catch (IOException ex) 
         {
             System.out.println("Impossibile accedere al file, i dati non sono stati salvati!");
+        }*/
+        
+        /*Visita[] elenco;
+        int anno=2021, mese=4, giorno=13;
+        
+        elenco=c1.visualizzaPrenotazioniPerGiorno(anno, mese, giorno);
+        if(elenco==null)
+            System.out.println("Nessuna prenotazione per questo giorno!");
+        
+        for(int i=0;i<elenco.length;i++)
+        {
+            System.out.println(elenco[i]);
         }*/
     }
 }

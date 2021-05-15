@@ -14,7 +14,7 @@ import java.io.*;
  *
  * @author Nicolas
  */
-public class Centro 
+public class Centro implements Serializable
 {
     //Attributi.
     private Visita[] calendarioVisite;
@@ -27,18 +27,6 @@ public class Centro
         calendarioVisite=new Visita[NUM_MAX_VISITE];
     }
     
-    /*//Costruttore di copia.
-    public Centro(Centro centro)
-    {
-        calendarioVisite=new Visita[NUM_MAX_VISITE];
-        
-        for(int i=0;i<getNumMaxVisite();i++)
-        {
-            calendarioVisite[i]=centro.getVisita(i);
-        }
-    }*/
-    
-    //Costruttore di default.
     //Getter.
     public static int getNumMaxVisite()
     {
@@ -64,7 +52,6 @@ public class Centro
     }
     
     //2 --> Eliminare una visita prenotata, più di un metodo.
-    //RIGUARDARE I METODI DI ELIMINA.
     public void mostraPrenotazioni(String cognomePaziente, String nomePaziente, Visita[] arrayVisite)
     {
         int c=0;
@@ -109,16 +96,36 @@ public class Centro
     //CHIEDERE COME SI SCEGLIE LA VISITA DA ESEGUIRE.
     
     //4 --> Visualizzare le visite di un determinato giorno.
-    //CHIEDERE SE VA BENE FARE SOUT QUI OPPURE NO (SE NO RESTITUISCI UNA STRINGA COSTRUITA CON s+=calendarioVisite[i].toString()).
-    public void visualizzaPrenotazioniPerGiorno(int anno, int mese, int giorno)
+    public Visita[] visualizzaPrenotazioniPerGiorno(int anno, int mese, int giorno)
     {
+        int numeroVisitePerGiorno=0;
+        
         for(int i=0;i<getNVisitePresenti();i++)
         {
-            if(calendarioVisite[i].getAppuntamento().getYear()==anno && calendarioVisite[i].getAppuntamento().getMonthValue()==mese && calendarioVisite[i].getAppuntamento().getDayOfMonth()==giorno)
+            if(calendarioVisite[i]!=null && calendarioVisite[i].getAppuntamento().getYear()==anno && calendarioVisite[i].getAppuntamento().getMonthValue()==mese && calendarioVisite[i].getAppuntamento().getDayOfMonth()==giorno)
             {
-                System.out.println(calendarioVisite[i].toString());
+                numeroVisitePerGiorno++;
             }
         }
+        
+        //Se non ci sono visite per quel giorno --> return null.
+        if(numeroVisitePerGiorno==0)
+            return null;
+        
+        Visita[] elencoVisitePerGiorno=new Visita[numeroVisitePerGiorno];
+        
+        int posizioneVisita=0;
+        
+        for(int i=0;i<getNVisitePresenti();i++)
+        {
+            if(calendarioVisite[i]!=null && calendarioVisite[i].getAppuntamento().getYear()==anno && calendarioVisite[i].getAppuntamento().getMonthValue()==mese && calendarioVisite[i].getAppuntamento().getDayOfMonth()==giorno)
+            {
+                elencoVisitePerGiorno[posizioneVisita]=calendarioVisite[i];
+                posizioneVisita++;
+            }
+        }
+        
+        return elencoVisitePerGiorno;
     }
     
     //5 --> Visualizzare le visite non ancora svolte in ordine alfabetico per paziente.
@@ -162,8 +169,7 @@ public class Centro
         f1.close();
     }
     
-    //CHIEDERE COME SISTEMARE IL PROBLEMA DI SALVA DATI E CARICA DATI.
-    /*//7 --> Salva dati su file binario e carica all'avvio del software.
+    //7 --> Salva dati su file binario e carica all'avvio del software.
     //Serializzazione su file binario.
     //Salva dati.
     public void salvaCentro(String nomeFile) throws FileNotFoundException, IOException
@@ -192,5 +198,5 @@ public class Centro
             inputStream.close();
             throw new FileException("Errore nella lettura del file!");
         }
-    }*/
+    }
 }

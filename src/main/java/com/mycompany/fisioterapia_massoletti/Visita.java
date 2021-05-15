@@ -5,13 +5,14 @@
  */
 package com.mycompany.fisioterapia_massoletti;
 
+import java.io.*;
 import java.time.*;
 
 /**
  *
  * @author Nicolas
  */
-public class Visita 
+public class Visita implements Serializable
 {
     //Attributi.
     private int codiceIdentificativo;   //Un codice numerico univoco per ogni paziente.
