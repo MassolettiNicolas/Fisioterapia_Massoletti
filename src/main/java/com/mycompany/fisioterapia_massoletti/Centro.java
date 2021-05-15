@@ -9,6 +9,7 @@ import altro.*;
 import eccezioni.*;
 import file.*;
 import java.io.*;
+import java.time.*;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Centro implements Serializable
     //Attributi.
     private Visita[] calendarioVisite;
     private static int NUM_MAX_VISITE=100;   //CHIEDERE SE 100.
-    private int nVisitePresenti;   //CHIEDERE SE SERVE.
+    private int nVisitePresenti;   
     
     //Costruttore.
     public Centro()
@@ -93,7 +94,28 @@ public class Centro implements Serializable
     }
  
     //3 --> Eseguire una visita.
-    //CHIEDERE COME SI SCEGLIE LA VISITA DA ESEGUIRE.
+    //Controllo anche il codice identificativo nel caso ci fossero visite uguali.
+    //CONTROLLARE L'ERRORE CHE DA IL METODO NEL COMPILARE.
+    /*public String eseguiVisita(int codiceID, String nome, String cognome, int anno, int mese, int giorno, int ora, int minuto)
+    {
+        String visitaScelta="";
+        LocalDateTime confrontoVisita=null;
+        confrontoVisita.of(anno, mese, giorno, ora, minuto);
+        
+        for(int i=0;i<getNVisitePresenti();i++)
+        {
+            if(calendarioVisite[i]!=null)
+            {
+                if(calendarioVisite[i].getCodiceIdentificativo()==codiceID && calendarioVisite[i].getAppuntamento().isEqual(confrontoVisita) && calendarioVisite[i].getCognome().compareToIgnoreCase(cognome)==0 && calendarioVisite[i].getNome().compareToIgnoreCase(nome)==0)
+                {
+                    calendarioVisite[i].setVisitaSvolta("S"); 
+                    visitaScelta=calendarioVisite[i].toString();
+                }
+            } 
+        }
+        
+        return visitaScelta;
+    }*/
     
     //4 --> Visualizzare le visite di un determinato giorno.
     public Visita[] visualizzaPrenotazioniPerGiorno(int anno, int mese, int giorno)
@@ -129,26 +151,38 @@ public class Centro implements Serializable
     }
     
     //5 --> Visualizzare le visite non ancora svolte in ordine alfabetico per paziente.
-    //CHIEDERE SE VA BENE FARE SOUT QUI OPPURE NO (SE NO RESTITUISCI UNA STRINGA COSTRUITA CON s+=elencoOrdinato[j].toString()).
-    public void visualizzaVisiteNonSvolteOrdineAlfabetico()
+    public Visita[] visualizzaVisiteNonSvolteOrdineAlfabetico()
     {
-        Visita[] elencoOrdinato=new Visita[getNVisitePresenti()];
-        int c=0;
         String confronto="N";   //La stringa che utilizzo per confrontare.
+        int numeroVisiteNonSvolte=0;
         
-        for(int i=0;i<elencoOrdinato.length;i++)
+        for(int i=0;i<getNVisitePresenti();i++)
         {
             if(calendarioVisite[i]!=null && calendarioVisite[i].getVisitaSvolta().compareToIgnoreCase(confronto)==0)
             {
-                elencoOrdinato[c]=calendarioVisite[i];
-                c++;
+                numeroVisiteNonSvolte++;
+            }
+        }
+        
+        //Se non ci sono visite non svolte --> return null.
+        if(numeroVisiteNonSvolte==0)
+            return null;
+        
+        Visita[] elencoOrdinato=new Visita[getNVisitePresenti()];
+        int posizione=0;       
+        
+        for(int i=0;i<getNVisitePresenti();i++)
+        {
+            if(calendarioVisite[i]!=null && calendarioVisite[i].getVisitaSvolta().compareToIgnoreCase(confronto)==0)
+            {
+                elencoOrdinato[posizione]=calendarioVisite[i];
+                posizione++;
             }
         }
         
         elencoOrdinato=Ordinatore.selectionSortAlfabeticoVisiteNonSvolte(elencoOrdinato);
         
-        for(int j=0;j<elencoOrdinato.length;j++)
-            System.out.println(elencoOrdinato[j].toString());
+        return elencoOrdinato;
     }
     
     //6 --> Esportare in CSV.

@@ -113,5 +113,9 @@ public class Main
         {
             System.out.println(elenco[i]);
         }*/
+        
+        /*String visitaScelta="";
+        visitaScelta=c1.eseguiVisita(3, "Massoletti", "Nicolas", 2021, 4, 13, 4, 6);
+        System.out.println(visitaScelta);*/
     }
 }
