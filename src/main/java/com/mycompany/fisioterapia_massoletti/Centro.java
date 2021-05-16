@@ -53,19 +53,36 @@ public class Centro implements Serializable
     }
     
     //2 --> Eliminare una visita prenotata, più di un metodo.
-    public void mostraPrenotazioni(String cognomePaziente, String nomePaziente, Visita[] arrayVisite)
+    public int numeroPrenotazioniPaziente(String cognomePaziente, String nomePaziente)
     {
-        int c=0;
+        int n=0;
         
         for(int i=0;i<getNVisitePresenti();i++)
         {
             if(calendarioVisite[i].getCognome().compareToIgnoreCase(cognomePaziente)==0 && calendarioVisite[i].getNome().compareToIgnoreCase(nomePaziente)==0)
             {
-                System.out.println(calendarioVisite[i].toString());
+                n++;
+            }
+        }
+        
+        return n;
+    }
+    
+    public Visita[] mostraPrenotazioni(String cognomePaziente, String nomePaziente)
+    {
+        int c=0;
+        Visita[] arrayVisite=new Visita[getNVisitePresenti()];
+        
+        for(int i=0;i<getNVisitePresenti();i++)
+        {
+            if(calendarioVisite[i].getCognome().compareToIgnoreCase(cognomePaziente)==0 && calendarioVisite[i].getNome().compareToIgnoreCase(nomePaziente)==0)
+            {
                 arrayVisite[c]=calendarioVisite[i];
                 c++;
             }
         }
+        
+        return arrayVisite;
     }
     
     public int rimuoviPrenotazione(int codiceID, Visita[] arrayVisite)

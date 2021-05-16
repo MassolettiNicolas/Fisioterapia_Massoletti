@@ -26,7 +26,7 @@ public class Visita implements Serializable
     private String visitaSvolta;   //Visita svolta: si/no.
     
     //Costruttore.
-    public Visita(int codiceIdentificativo, String cognome, String nome, String CFPaziente, String descrizioneVisita, String cognomeFisioterapista, String nomeFisioterapista, int anno, int mese, int giorno, int ora, int minuto, String visitaSvolta) 
+    public Visita(int codiceIdentificativo, String cognome, String nome, String CFPaziente, String descrizioneVisita, String cognomeFisioterapista, String nomeFisioterapista, int anno, int mese, int giorno, int ora, int minuto) 
     {
         //CHIEDERE SE IL CODICE IDENTIFICATIVO DEVE ESSERE ASSEGNATO AUTOMATICAMENTE O NO.
         this.codiceIdentificativo=codiceIdentificativo;
@@ -37,7 +37,7 @@ public class Visita implements Serializable
         this.cognomeFisioterapista=cognomeFisioterapista;
         this.nomeFisioterapista=nomeFisioterapista;
         this.appuntamento=LocalDateTime.of(anno, mese, giorno, ora, minuto);
-        this.visitaSvolta=visitaSvolta;
+        this.visitaSvolta="N";
     }
     
     //Costruttore di copia.
@@ -66,7 +66,7 @@ public class Visita implements Serializable
         cognomeFisioterapista="";
         nomeFisioterapista="";
         appuntamento=LocalDateTime.now();   //Istanzia un oggetto con data ed ora correnti.
-        visitaSvolta=""; 
+        visitaSvolta="N"; 
     }
     
     //Metodi.
@@ -153,15 +153,10 @@ public class Visita implements Serializable
         this.nomeFisioterapista=nomeFisioterapista;
     }
 
-    public void setVisita(int anno, int mese, int giorno, int ora, int minuto)
+    public void setAppuntamento(int anno, int mese, int giorno, int ora, int minuto)
     {
         appuntamento.of(anno, mese, giorno, ora, minuto);
     }
-
-    public void setVisitaSvolta(String visitaSvolta)
-    {
-        this.visitaSvolta=visitaSvolta;
-    } 
     
     //toString.
     //Override.
