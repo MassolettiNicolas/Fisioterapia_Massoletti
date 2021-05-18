@@ -39,6 +39,26 @@ public class Centro implements Serializable
         return nVisitePresenti;
     }
     
+    public Visita[] visualizzaVisite() throws EccezioneNessunaVisita
+    {
+        Visita[] arrayVisite=new Visita[getNVisitePresenti()];
+        int c=0;
+        
+        for(int i=0;i<arrayVisite.length;i++)
+        {
+            if(calendarioVisite[i]!=null)
+            {
+                arrayVisite[c]=calendarioVisite[i];
+                c++;
+            }                
+        }
+        
+        if(c==0)
+            throw new EccezioneNessunaVisita(c);   //Nessuna prenotazione.
+                   
+        return arrayVisite;
+    }
+    
     //1 --> Registrare la prenotazione di una nuova visita.
     public void registraPrenotazione(Visita visita) throws EccezionePosizioneNonValida
     {
@@ -61,7 +81,7 @@ public class Centro implements Serializable
         
         for(int i=0;i<getNVisitePresenti();i++)
         {
-            if(calendarioVisite[i].getCognome().compareToIgnoreCase(cognomePaziente)==0 && calendarioVisite[i].getNome().compareToIgnoreCase(nomePaziente)==0)
+            if(calendarioVisite[i]!=null && calendarioVisite[i].getCognome().compareToIgnoreCase(cognomePaziente)==0 && calendarioVisite[i].getNome().compareToIgnoreCase(nomePaziente)==0)
             {
                 n++;
             }
@@ -78,7 +98,7 @@ public class Centro implements Serializable
         int c=0;
         Visita[] arrayVisite=new Visita[lunghezzaArray];
         
-        for(int i=0;i<getNVisitePresenti();i++)
+        for(int i=0;i<arrayVisite.length;i++)
         {
             if(calendarioVisite[i]!=null && calendarioVisite[i].getCognome().compareToIgnoreCase(cognomePaziente)==0 && calendarioVisite[i].getNome().compareToIgnoreCase(nomePaziente)==0)
             {

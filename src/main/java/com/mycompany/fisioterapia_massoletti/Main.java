@@ -18,7 +18,7 @@ public class Main
 {
     public static void main(String[] args) 
     {
-        String[] vociMenu=new String[8];
+        String[] vociMenu=new String[9];
         int sceltaUtente=-1;
         Scanner tastiera=new Scanner(System.in);
         Centro c1=new Centro();  
@@ -32,10 +32,11 @@ public class Main
         vociMenu[1]="Registra prenotazione";
         vociMenu[2]="Elimina prenotazione";
         vociMenu[3]="Esegui una visita";
-        vociMenu[4]="Visualizza prenotazioni di un giorno";
-        vociMenu[5]="Visualizza visite non svolte in ordine alfabetico";
-        vociMenu[6]="Esporta i dati su file CSV";
-        vociMenu[7]="Salva dati";
+        vociMenu[4]="Visualizza tutte le prenotazioni presenti";
+        vociMenu[5]="Visualizza prenotazioni di un giorno";
+        vociMenu[6]="Visualizza visite non svolte in ordine alfabetico";
+        vociMenu[7]="Esporta i dati su file CSV";
+        vociMenu[8]="Salva dati";
         
         //Deserializzazione.
         try
@@ -197,6 +198,26 @@ public class Main
                     }
                     case 4:
                     {
+                        Visita[] arrayVisite;
+                        
+                        try
+                        {
+                           arrayVisite=c1.visualizzaVisite(); 
+                           for(int i=0;i<arrayVisite.length;i++)
+                                System.out.println(arrayVisite[i]);
+                        }
+                        catch(EccezioneNessunaVisita e1)
+                        {
+                            System.out.println(e1.toString());
+                        }
+                        
+                        System.out.println("Premi un pulsante per continuare.");
+                        tastiera.nextLine();
+                        
+                        break;
+                    }
+                    case 5:
+                    {
                         Visita[] arrayVisitePerGiorno;
                         System.out.println("VISUALIZZA LE VISITE PER UN GIORNO:");
                         System.out.println("Anno della visita --> ");
@@ -222,7 +243,7 @@ public class Main
                         
                         break;
                     }
-                    case 5:
+                    case 6:
                     {
                         Visita[] arrayVisiteNonSvolte;
                         System.out.println("VISUALIZZA NON SVOLTE IN ORDINE ALFABETICO:");  
@@ -243,7 +264,7 @@ public class Main
                         
                         break;
                     }
-                    case 6:
+                    case 7:
                     {
                         System.out.println("ESPORTA IN CSV:");
                         try
@@ -262,7 +283,7 @@ public class Main
                         
                         break;
                     }
-                    case 7:
+                    case 8:
                     {
                         System.out.println("SALVA DATI:");
                         //Serializzazione.
