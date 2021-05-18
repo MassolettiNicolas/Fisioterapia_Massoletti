@@ -40,16 +40,17 @@ public class Centro implements Serializable
     }
     
     //1 --> Registrare la prenotazione di una nuova visita.
-    public int registraPrenotazione(Visita visita)
+    public void registraPrenotazione(Visita visita) throws EccezionePosizioneNonValida
     {
-        if(getNVisitePresenti()<=getNumMaxVisite())
+        try
         {
             calendarioVisite[nVisitePresenti]=visita;
             nVisitePresenti++;
-            return 0;
         }
-        else
-            return -1;
+        catch(ArrayIndexOutOfBoundsException e1)
+        {
+            throw new EccezionePosizioneNonValida(nVisitePresenti, NUM_MAX_VISITE);   //Posizione non valida.
+        }   
     }
     
     //2 --> Eliminare una visita prenotata, più di un metodo.
@@ -115,7 +116,7 @@ public class Centro implements Serializable
     public String eseguiVisita(int codiceID, String nome, String cognome, int anno, int mese, int giorno, int ora, int minuto)
     {
         String visitaScelta="";
-        LocalDateTime confrontoVisita=null;
+        LocalDateTime confrontoVisita=null;   //attenzione al null.
         confrontoVisita.of(anno, mese, giorno, ora, minuto);
         
         for(int i=0;i<getNVisitePresenti();i++)

@@ -21,9 +21,10 @@ public class Main
         String[] vociMenu=new String[8];
         int sceltaUtente=-1;
         Scanner tastiera=new Scanner(System.in);
-        Centro c1=new Centro();
-        Visita visita=new Visita();   //cambiare perchè usa la data sbagliata.
+        Centro c1=new Centro();  
         int esitoOperazione;
+        int codiceID, anno, mese, giorno, ora, minuto;
+        String nome, cognome, nomeFisio, cognomeFisio, codiceFiscale, descrizioneVisita;
         String nomeFileCSV="centro.txt";
         String nomeFileBinario="centro.bin";
         
@@ -73,41 +74,44 @@ public class Main
                     case 1:
                     {
                         System.out.println("REGISTRA VISITA:");
-                        visita=new Visita();
                         System.out.println("Codice identificativo --> ");                  
-                        visita.setCodiceIdentificativo(tastiera.nextInt()); 
+                        codiceID=tastiera.nextInt();
                         tastiera.nextLine();
                         System.out.println("Cognome --> ");                  
-                        visita.setCognome(tastiera.nextLine()); 
+                        cognome=tastiera.nextLine();
                         System.out.println("Nome --> ");                  
-                        visita.setNome(tastiera.nextLine()); 
+                        nome=tastiera.nextLine();
                         System.out.println("Codice fiscale --> ");                  
-                        visita.setCFPaziente(tastiera.nextLine());
+                        codiceFiscale=tastiera.nextLine();
                         System.out.println("Descrizione visita (massaggio, controllo ecc...) --> ");                  
-                        visita.setDescrizioneVisita(tastiera.nextLine());
+                        descrizioneVisita=tastiera.nextLine();
                         System.out.println("Cognome fisioterapista --> ");                  
-                        visita.setCognomeFisioterapista(tastiera.nextLine()); 
+                        cognomeFisio=tastiera.nextLine(); 
                         System.out.println("Nome fisioterapista --> ");                  
-                        visita.setNomeFisioterapista(tastiera.nextLine()); 
+                        nomeFisio=tastiera.nextLine(); 
                         //LocalDateTime appuntamento, inserimento dati:
                         System.out.println("Anno della visita --> ");
-                        int anno=tastiera.nextInt();
+                        anno=tastiera.nextInt();
                         System.out.println("Mese della visita --> ");
-                        int mese=tastiera.nextInt();
+                        mese=tastiera.nextInt();
                         System.out.println("Giorno della visita --> ");
-                        int giorno=tastiera.nextInt();
+                        giorno=tastiera.nextInt();
                         System.out.println("Ora della visita --> ");
-                        int ora=tastiera.nextInt();
+                        ora=tastiera.nextInt();
                         System.out.println("Minuto della visita --> ");
-                        int minuto=tastiera.nextInt();
-                        visita.setAppuntamento(anno, mese, giorno, ora, minuto); 
+                        minuto=tastiera.nextInt();
+                        Visita visita=new Visita(codiceID, cognome, nome, codiceFiscale, descrizioneVisita, cognomeFisio, nomeFisio, anno, mese, giorno, ora, minuto);
                         System.out.println("Il parametro visitaSvolta viene impostato automaticamente su N!");
                         
-                        esitoOperazione=c1.registraPrenotazione(visita); 
-                        if(esitoOperazione==0)
+                        try
+                        {
+                            c1.registraPrenotazione(visita); 
                             System.out.println("Ok, inserimento eseguito correttamente!");
-                        else
-                            System.out.println("Numero massimo di visite raggiunto!");
+                        }
+                        catch(EccezionePosizioneNonValida e1)
+                        {
+                            System.out.println(e1.toString());
+                        }
                         
                         System.out.println("Premi un pulsante per continuare.");
                         tastiera.nextLine();
@@ -120,15 +124,15 @@ public class Main
                         int lunghezzaArray;
                         System.out.println("ELIMINA VISITA:");
                         System.out.println("Cognome --> ");                  
-                        String cognome=tastiera.nextLine();
+                        cognome=tastiera.nextLine();
                         System.out.println("Nome --> ");                  
-                        String nome=tastiera.nextLine(); 
+                        nome=tastiera.nextLine(); 
                         lunghezzaArray=c1.numeroPrenotazioniPaziente(cognome, nome);
                         arrayVisite=c1.mostraPrenotazioni(cognome, nome);
                         for(int i=0;i<arrayVisite.length;i++)
                             System.out.println(arrayVisite[i]);
                         System.out.println("Codice della visita da eliminare --> ");                  
-                        int codiceID=tastiera.nextInt();
+                        codiceID=tastiera.nextInt();
                         esitoOperazione=c1.rimuoviPrenotazione(codiceID, arrayVisite);
                         if(esitoOperazione==0)
                             System.out.println("Eliminazione avvenuta correttamente!");
@@ -140,32 +144,26 @@ public class Main
                     case 3:
                     {
                         String visitaScelta="";
-                        int codiceID=-1;
-                        String nome="";
-                        String cognome="";
                         System.out.println("ESEGUI UNA VISITA:");
                         System.out.println("Cognome --> ");                  
-                        visita.setCognome(tastiera.nextLine()); 
+                        cognome=tastiera.nextLine(); 
                         System.out.println("Nome --> ");                  
-                        visita.setNome(tastiera.nextLine()); 
+                        nome=tastiera.nextLine(); 
                         //LocalDateTime appuntamento, inserimento dati:
                         System.out.println("Anno della visita --> ");
-                        int anno=tastiera.nextInt();
+                        anno=tastiera.nextInt();
                         System.out.println("Mese della visita --> ");
-                        int mese=tastiera.nextInt();
+                        mese=tastiera.nextInt();
                         System.out.println("Giorno della visita --> ");
-                        int giorno=tastiera.nextInt();
+                        giorno=tastiera.nextInt();
                         System.out.println("Ora della visita --> ");
-                        int ora=tastiera.nextInt();
+                        ora=tastiera.nextInt();
                         System.out.println("Minuto della visita --> ");
-                        int minuto=tastiera.nextInt();
-                        visita.setAppuntamento(anno, mese, giorno, ora, minuto);
+                        minuto=tastiera.nextInt();
                         System.out.println("Codice identificativo (nel caso fossero presenti visite con parametri uguali) --> ");                  
-                        visita.setCodiceIdentificativo(tastiera.nextInt()); 
-                        System.out.println("PRIMA DELL'ESECUZIONE --> ");
-                        System.out.println(visita.toString());
+                        codiceID=tastiera.nextInt();
                         visitaScelta=c1.eseguiVisita(codiceID, nome, cognome, anno, mese, giorno, ora, minuto);
-                        System.out.println("DOPO L'ESECUZIONE --> ");
+                        System.out.println("VISITA ESEGUITA --> ");
                         System.out.println(visitaScelta);
                         
                         break;
@@ -175,11 +173,11 @@ public class Main
                         Visita[] arrayVisitePerGiorno;
                         System.out.println("VISUALIZZA LE VISITE PER UN GIORNO:");
                         System.out.println("Anno della visita --> ");
-                        int anno=tastiera.nextInt();
+                        anno=tastiera.nextInt();
                         System.out.println("Mese della visita --> ");
-                        int mese=tastiera.nextInt();
+                        mese=tastiera.nextInt();
                         System.out.println("Giorno della visita --> ");
-                        int giorno=tastiera.nextInt();
+                        giorno=tastiera.nextInt();
                         arrayVisitePerGiorno=c1.visualizzaPrenotazioniPerGiorno(anno, mese, giorno);
                         if(arrayVisitePerGiorno==null)
                             System.out.println("Nessuna visita per questo giorno!");

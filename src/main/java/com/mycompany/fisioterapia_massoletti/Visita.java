@@ -37,7 +37,7 @@ public class Visita implements Serializable
         this.cognomeFisioterapista=cognomeFisioterapista;
         this.nomeFisioterapista=nomeFisioterapista;
         this.appuntamento=LocalDateTime.of(anno, mese, giorno, ora, minuto);
-        this.visitaSvolta="N";
+        this.visitaSvolta="N";   //CHIEDERE SE VA BENE COSI.
     }
     
     //Costruttore di copia.
