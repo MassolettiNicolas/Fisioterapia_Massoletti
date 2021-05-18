@@ -54,7 +54,7 @@ public class Centro implements Serializable
     }
     
     //2 --> Eliminare una visita prenotata, più di un metodo.
-    public int numeroPrenotazioniPaziente(String cognomePaziente, String nomePaziente)
+    public int numeroPrenotazioniPaziente(String cognomePaziente, String nomePaziente) throws EccezioneNessunaVisita
     {
         int n=0;
         
@@ -66,22 +66,28 @@ public class Centro implements Serializable
             }
         }
         
+        if(n==0)
+            throw new EccezioneNessunaVisita(n);   //Nessuna prenotazione.
+        
         return n;
     }
     
-    public Visita[] mostraPrenotazioni(String cognomePaziente, String nomePaziente)
+    public Visita[] mostraPrenotazioni(String cognomePaziente, String nomePaziente, int lunghezzaArray) throws EccezioneNessunaVisita
     {
         int c=0;
-        Visita[] arrayVisite=new Visita[getNVisitePresenti()];
+        Visita[] arrayVisite=new Visita[lunghezzaArray];
         
         for(int i=0;i<getNVisitePresenti();i++)
         {
-            if(calendarioVisite[i].getCognome().compareToIgnoreCase(cognomePaziente)==0 && calendarioVisite[i].getNome().compareToIgnoreCase(nomePaziente)==0)
+            if(calendarioVisite[i]!=null && calendarioVisite[i].getCognome().compareToIgnoreCase(cognomePaziente)==0 && calendarioVisite[i].getNome().compareToIgnoreCase(nomePaziente)==0)
             {
                 arrayVisite[c]=calendarioVisite[i];
                 c++;
             }
         }
+        
+        if(c==0)
+            throw new EccezioneNessunaVisita(c);   //Nessuna prenotazione.
         
         return arrayVisite;
     }
@@ -97,7 +103,7 @@ public class Centro implements Serializable
             }
         }
         
-        return -1;
+        return -1;   //eccezione.
     }
     
     private void aggiornaPosizione(int posizione, Visita[] arrayVisite)
@@ -112,7 +118,7 @@ public class Centro implements Serializable
     }
  
     //3 --> Eseguire una visita.
-    //Controllo anche il codice identificativo nel caso ci fossero visite uguali.
+    //Controllo anche il codice identificativo perchè potrebbero esserci visite uguali.
     public String eseguiVisita(int codiceID, String nome, String cognome, int anno, int mese, int giorno, int ora, int minuto)
     {
         String visitaScelta="";
@@ -135,7 +141,7 @@ public class Centro implements Serializable
     }
     
     //4 --> Visualizzare le visite di un determinato giorno.
-    public Visita[] visualizzaPrenotazioniPerGiorno(int anno, int mese, int giorno)
+    public Visita[] visualizzaPrenotazioniPerGiorno(int anno, int mese, int giorno) throws EccezioneNessunaVisita
     {
         int numeroVisitePerGiorno=0;
         
@@ -149,7 +155,7 @@ public class Centro implements Serializable
         
         //Se non ci sono visite per quel giorno --> return null.
         if(numeroVisitePerGiorno==0)
-            return null;
+            throw new EccezioneNessunaVisita(numeroVisitePerGiorno);   //Nessuna prenotazione.
         
         Visita[] elencoVisitePerGiorno=new Visita[numeroVisitePerGiorno];
         
@@ -168,7 +174,7 @@ public class Centro implements Serializable
     }
     
     //5 --> Visualizzare le visite non ancora svolte in ordine alfabetico per paziente.
-    public Visita[] visualizzaVisiteNonSvolteOrdineAlfabetico()
+    public Visita[] visualizzaVisiteNonSvolteOrdineAlfabetico() throws EccezioneNessunaVisita 
     {
         String confronto="N";   //La stringa che utilizzo per confrontare.
         int numeroVisiteNonSvolte=0;
@@ -183,9 +189,9 @@ public class Centro implements Serializable
         
         //Se non ci sono visite non svolte --> return null.
         if(numeroVisiteNonSvolte==0)
-            return null;
+            throw new EccezioneNessunaVisita(numeroVisiteNonSvolte);   //Nessuna prenotazione.
         
-        Visita[] elencoOrdinato=new Visita[getNVisitePresenti()];
+        Visita[] elencoOrdinato=new Visita[numeroVisiteNonSvolte];
         int posizione=0;       
         
         for(int i=0;i<getNVisitePresenti();i++)

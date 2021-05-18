@@ -127,17 +127,28 @@ public class Main
                         cognome=tastiera.nextLine();
                         System.out.println("Nome --> ");                  
                         nome=tastiera.nextLine(); 
-                        lunghezzaArray=c1.numeroPrenotazioniPaziente(cognome, nome);
-                        arrayVisite=c1.mostraPrenotazioni(cognome, nome);
-                        for(int i=0;i<arrayVisite.length;i++)
-                            System.out.println(arrayVisite[i]);
-                        System.out.println("Codice della visita da eliminare --> ");                  
-                        codiceID=tastiera.nextInt();
-                        esitoOperazione=c1.rimuoviPrenotazione(codiceID, arrayVisite);
-                        if(esitoOperazione==0)
-                            System.out.println("Eliminazione avvenuta correttamente!");
-                        else
-                            System.out.println("Eliminazione non avvenuta!");
+                        
+                        try
+                        {
+                            lunghezzaArray=c1.numeroPrenotazioniPaziente(cognome, nome);
+                            arrayVisite=c1.mostraPrenotazioni(cognome, nome, lunghezzaArray);
+                            for(int i=0;i<arrayVisite.length;i++)
+                                System.out.println(arrayVisite[i]);
+                            System.out.println("Codice della visita da eliminare --> ");                  
+                            codiceID=tastiera.nextInt();
+                            esitoOperazione=c1.rimuoviPrenotazione(codiceID, arrayVisite);
+                            if(esitoOperazione==0)
+                                System.out.println("Eliminazione avvenuta correttamente!");
+                            else
+                                System.out.println("Eliminazione non avvenuta!");
+                        }
+                        catch(EccezioneNessunaVisita e1)
+                        {
+                            System.out.println(e1.toString());
+                        }
+                        
+                        System.out.println("Premi un pulsante per continuare.");
+                        tastiera.nextLine();
                         
                         break;
                     }
@@ -166,6 +177,9 @@ public class Main
                         System.out.println("VISITA ESEGUITA --> ");
                         System.out.println(visitaScelta);
                         
+                        System.out.println("Premi un pulsante per continuare.");
+                        tastiera.nextLine();
+                        
                         break;
                     }
                     case 4:
@@ -178,29 +192,41 @@ public class Main
                         mese=tastiera.nextInt();
                         System.out.println("Giorno della visita --> ");
                         giorno=tastiera.nextInt();
-                        arrayVisitePerGiorno=c1.visualizzaPrenotazioniPerGiorno(anno, mese, giorno);
-                        if(arrayVisitePerGiorno==null)
-                            System.out.println("Nessuna visita per questo giorno!");
-                        else
+                        
+                        try
                         {
-                           for(int i=0;i<arrayVisitePerGiorno.length;i++)
-                            System.out.println(arrayVisitePerGiorno[i]); 
-                        }     
+                            arrayVisitePerGiorno=c1.visualizzaPrenotazioniPerGiorno(anno, mese, giorno);
+                            for(int i=0;i<arrayVisitePerGiorno.length;i++)
+                                System.out.println(arrayVisitePerGiorno[i]); 
+                        }
+                        catch(EccezioneNessunaVisita e1)
+                        {
+                            System.out.println(e1.toString());
+                        }   
+                        
+                        System.out.println("Premi un pulsante per continuare.");
+                        tastiera.nextLine();
                         
                         break;
                     }
                     case 5:
                     {
                         Visita[] arrayVisiteNonSvolte;
-                        System.out.println("VISUALIZZA NON SVOLTE IN ORDINE ALFABETICO:");                       
-                        arrayVisiteNonSvolte=c1.visualizzaVisiteNonSvolteOrdineAlfabetico();
-                        if(arrayVisiteNonSvolte==null)
-                            System.out.println("Nessuna visita per questo giorno!");
-                        else
+                        System.out.println("VISUALIZZA NON SVOLTE IN ORDINE ALFABETICO:");  
+                        
+                        try
                         {
-                           for(int i=0;i<arrayVisiteNonSvolte.length;i++)
-                            System.out.println(arrayVisiteNonSvolte[i]); 
-                        }  
+                            arrayVisiteNonSvolte=c1.visualizzaVisiteNonSvolteOrdineAlfabetico();
+                            for(int i=0;i<arrayVisiteNonSvolte.length;i++)
+                                System.out.println(arrayVisiteNonSvolte[i]);
+                        }
+                        catch(EccezioneNessunaVisita e1)
+                        {
+                            System.out.println(e1.toString());
+                        }
+                        
+                        System.out.println("Premi un pulsante per continuare.");
+                        tastiera.nextLine();
                         
                         break;
                     }
