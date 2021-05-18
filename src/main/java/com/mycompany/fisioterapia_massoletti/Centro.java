@@ -54,6 +54,7 @@ public class Centro implements Serializable
     }
     
     //2 --> Eliminare una visita prenotata, più di un metodo.
+    //Mostra a schermo tutte le visite di un paziente e con il codice identificativo si sceglie quale eliminare.
     public int numeroPrenotazioniPaziente(String cognomePaziente, String nomePaziente) throws EccezioneNessunaVisita
     {
         int n=0;
@@ -92,7 +93,7 @@ public class Centro implements Serializable
         return arrayVisite;
     }
     
-    public int rimuoviPrenotazione(int codiceID, Visita[] arrayVisite)
+    public int rimuoviPrenotazione(int codiceID, Visita[] arrayVisite) throws EccezioneCodiceIdentificativo
     {
         for(int i=0;i<getNVisitePresenti();i++)
         {
@@ -103,7 +104,7 @@ public class Centro implements Serializable
             }
         }
         
-        return -1;   //eccezione.
+        throw new EccezioneCodiceIdentificativo();   //Nessuna prenotazione per questo codice identificativo.
     }
     
     private void aggiornaPosizione(int posizione, Visita[] arrayVisite)
@@ -119,6 +120,7 @@ public class Centro implements Serializable
  
     //3 --> Eseguire una visita.
     //Controllo anche il codice identificativo perchè potrebbero esserci visite uguali.
+    //eccezione.
     public String eseguiVisita(int codiceID, String nome, String cognome, int anno, int mese, int giorno, int ora, int minuto)
     {
         String visitaScelta="";

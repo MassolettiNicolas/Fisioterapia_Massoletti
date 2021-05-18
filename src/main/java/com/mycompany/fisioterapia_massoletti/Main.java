@@ -136,11 +136,16 @@ public class Main
                                 System.out.println(arrayVisite[i]);
                             System.out.println("Codice della visita da eliminare --> ");                  
                             codiceID=tastiera.nextInt();
-                            esitoOperazione=c1.rimuoviPrenotazione(codiceID, arrayVisite);
-                            if(esitoOperazione==0)
+                            
+                            try
+                            {
+                                esitoOperazione=c1.rimuoviPrenotazione(codiceID, arrayVisite);
                                 System.out.println("Eliminazione avvenuta correttamente!");
-                            else
-                                System.out.println("Eliminazione non avvenuta!");
+                            }
+                            catch(EccezioneCodiceIdentificativo e1)
+                            {
+                                System.out.println(e1.toString());
+                            }
                         }
                         catch(EccezioneNessunaVisita e1)
                         {
