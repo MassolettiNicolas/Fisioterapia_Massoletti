@@ -120,16 +120,16 @@ public class Centro implements Serializable
  
     //3 --> Eseguire una visita.
     //Controllo anche il codice identificativo perchè potrebbero esserci visite uguali.
-    //eccezione.
-    public String eseguiVisita(int codiceID, String nome, String cognome, int anno, int mese, int giorno, int ora, int minuto)
+    public String eseguiVisita(int codiceID, String nome, String cognome, int anno, int mese, int giorno, int ora, int minuto) throws EccezioneVisitaSvolta
     {
+        String confronto="N";   //Controllo se la visita è già stata eseguita e se è vero, non la eseguo la seconda volta.
         String visitaScelta="";
-        LocalDateTime confrontoVisita=null;   //attenzione al null.
+        LocalDateTime confrontoVisita=null;   
         confrontoVisita.of(anno, mese, giorno, ora, minuto);
         
         for(int i=0;i<getNVisitePresenti();i++)
         {
-            if(calendarioVisite[i]!=null)
+            if(calendarioVisite[i]!=null && calendarioVisite[i].getVisitaSvolta().compareToIgnoreCase(confronto)==0)
             {
                 if(calendarioVisite[i].getCodiceIdentificativo()==codiceID && calendarioVisite[i].getAppuntamento().isEqual(confrontoVisita) && calendarioVisite[i].getCognome().compareToIgnoreCase(cognome)==0 && calendarioVisite[i].getNome().compareToIgnoreCase(nome)==0)
                 {
@@ -138,6 +138,9 @@ public class Centro implements Serializable
                 }
             } 
         }
+        
+        if(visitaScelta.compareToIgnoreCase("")==0)
+            throw new EccezioneVisitaSvolta();   //Nessuna visita da svolgere con questi parametri.
         
         return visitaScelta;
     }

@@ -178,10 +178,18 @@ public class Main
                         minuto=tastiera.nextInt();
                         System.out.println("Codice identificativo (nel caso fossero presenti visite con parametri uguali) --> ");                  
                         codiceID=tastiera.nextInt();
-                        visitaScelta=c1.eseguiVisita(codiceID, nome, cognome, anno, mese, giorno, ora, minuto);
-                        System.out.println("VISITA ESEGUITA --> ");
-                        System.out.println(visitaScelta);
                         
+                        try
+                        {
+                            visitaScelta=c1.eseguiVisita(codiceID, nome, cognome, anno, mese, giorno, ora, minuto);
+                            System.out.println("VISITA ESEGUITA --> ");
+                            System.out.println(visitaScelta);
+                        }
+                        catch(EccezioneVisitaSvolta e1)
+                        {
+                            System.out.println(e1.toString());
+                        }
+                                
                         System.out.println("Premi un pulsante per continuare.");
                         tastiera.nextLine();
                         
