@@ -112,8 +112,7 @@ public class Centro implements Serializable
  
     //3 --> Eseguire una visita.
     //Controllo anche il codice identificativo nel caso ci fossero visite uguali.
-    //CONTROLLARE L'ERRORE CHE DA IL METODO NEL COMPILARE.
-    /*public String eseguiVisita(int codiceID, String nome, String cognome, int anno, int mese, int giorno, int ora, int minuto)
+    public String eseguiVisita(int codiceID, String nome, String cognome, int anno, int mese, int giorno, int ora, int minuto)
     {
         String visitaScelta="";
         LocalDateTime confrontoVisita=null;
@@ -132,7 +131,7 @@ public class Centro implements Serializable
         }
         
         return visitaScelta;
-    }*/
+    }
     
     //4 --> Visualizzare le visite di un determinato giorno.
     public Visita[] visualizzaPrenotazioniPerGiorno(int anno, int mese, int giorno)

@@ -158,6 +158,11 @@ public class Visita implements Serializable
         appuntamento.of(anno, mese, giorno, ora, minuto);
     }
     
+    public void setVisitaSvolta(String visitaSvolta)
+    {
+        this.visitaSvolta=visitaSvolta;
+    }
+    
     //toString.
     //Override.
     public String toString()
@@ -171,7 +176,6 @@ public class Visita implements Serializable
     
     //equals.
     //Override.
-    //CHIEDERE SE EQUALS VA BENE COSI.
     public boolean equals(Object o)
     {
         Visita visita;

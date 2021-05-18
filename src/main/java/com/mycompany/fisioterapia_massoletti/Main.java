@@ -22,10 +22,10 @@ public class Main
         int sceltaUtente=-1;
         Scanner tastiera=new Scanner(System.in);
         Centro c1=new Centro();
-        Visita visita;
+        Visita visita=new Visita();   //cambiare perchè usa la data sbagliata.
         int esitoOperazione;
-        String nomeFileCSV="libriScaffale.txt";
-        String nomeFileBinario="scaffale.bin";
+        String nomeFileCSV="centro.txt";
+        String nomeFileBinario="centro.bin";
         
         vociMenu[0]="Esci";
         vociMenu[1]="Registra prenotazione";
@@ -139,7 +139,34 @@ public class Main
                     }
                     case 3:
                     {
+                        String visitaScelta="";
+                        int codiceID=-1;
+                        String nome="";
+                        String cognome="";
                         System.out.println("ESEGUI UNA VISITA:");
+                        System.out.println("Cognome --> ");                  
+                        visita.setCognome(tastiera.nextLine()); 
+                        System.out.println("Nome --> ");                  
+                        visita.setNome(tastiera.nextLine()); 
+                        //LocalDateTime appuntamento, inserimento dati:
+                        System.out.println("Anno della visita --> ");
+                        int anno=tastiera.nextInt();
+                        System.out.println("Mese della visita --> ");
+                        int mese=tastiera.nextInt();
+                        System.out.println("Giorno della visita --> ");
+                        int giorno=tastiera.nextInt();
+                        System.out.println("Ora della visita --> ");
+                        int ora=tastiera.nextInt();
+                        System.out.println("Minuto della visita --> ");
+                        int minuto=tastiera.nextInt();
+                        visita.setAppuntamento(anno, mese, giorno, ora, minuto);
+                        System.out.println("Codice identificativo (nel caso fossero presenti visite con parametri uguali) --> ");                  
+                        visita.setCodiceIdentificativo(tastiera.nextInt()); 
+                        System.out.println("PRIMA DELL'ESECUZIONE --> ");
+                        System.out.println(visita.toString());
+                        visitaScelta=c1.eseguiVisita(codiceID, nome, cognome, anno, mese, giorno, ora, minuto);
+                        System.out.println("DOPO L'ESECUZIONE --> ");
+                        System.out.println(visitaScelta);
                         
                         break;
                     }
