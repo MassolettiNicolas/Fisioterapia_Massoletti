@@ -74,6 +74,7 @@ public class Centro implements Serializable
     }
     
     //2 --> Eliminare una visita prenotata, più di un metodo.
+    //CONTROLLARE L'ERRORE.
     //Mostra a schermo tutte le visite di un paziente e con il codice identificativo si sceglie quale eliminare.
     public int numeroPrenotazioniPaziente(String cognomePaziente, String nomePaziente) throws EccezioneNessunaVisita
     {
@@ -140,11 +141,12 @@ public class Centro implements Serializable
  
     //3 --> Eseguire una visita.
     //Controllo anche il codice identificativo perchè potrebbero esserci visite uguali.
+    //VEDERE L'ERRORE.
     public String eseguiVisita(int codiceID, String nome, String cognome, int anno, int mese, int giorno, int ora, int minuto) throws EccezioneVisitaSvolta
     {
         String confronto="N";   //Controllo se la visita è già stata eseguita e se è vero, non la eseguo la seconda volta.
         String visitaScelta="";
-        LocalDateTime confrontoVisita=null;   
+        LocalDateTime confrontoVisita=null;   //CHIEDERE COME FARE.
         confrontoVisita.of(anno, mese, giorno, ora, minuto);
         
         for(int i=0;i<getNVisitePresenti();i++)
@@ -229,6 +231,7 @@ public class Centro implements Serializable
         }
         
         elencoOrdinato=Ordinatore.selectionSortAlfabeticoVisiteNonSvolte(elencoOrdinato);
+        //CONTROLLARE COME ORDINA.
         
         return elencoOrdinato;
     }

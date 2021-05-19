@@ -18,6 +18,7 @@ public class Main
 {
     public static void main(String[] args) 
     {
+        int prossimoCodiceIdentificativoAutomatico=1;
         String[] vociMenu=new String[9];
         int sceltaUtente=-1;
         Scanner tastiera=new Scanner(System.in);
@@ -39,6 +40,7 @@ public class Main
         vociMenu[8]="Salva dati";
         
         //Deserializzazione.
+        //CONTROLLARE PERCHE' NON FUNZIONA.
         try
         {
             c1=c1.caricaCentro(nomeFileBinario);
@@ -75,9 +77,6 @@ public class Main
                     case 1:
                     {
                         System.out.println("REGISTRA VISITA:");
-                        System.out.println("Codice identificativo --> ");                  
-                        codiceID=tastiera.nextInt();
-                        tastiera.nextLine();
                         System.out.println("Cognome --> ");                  
                         cognome=tastiera.nextLine();
                         System.out.println("Nome --> ");                  
@@ -101,12 +100,13 @@ public class Main
                         ora=tastiera.nextInt();
                         System.out.println("Minuto della visita --> ");
                         minuto=tastiera.nextInt();
-                        Visita visita=new Visita(codiceID, cognome, nome, codiceFiscale, descrizioneVisita, cognomeFisio, nomeFisio, anno, mese, giorno, ora, minuto);
+                        Visita visita=new Visita(prossimoCodiceIdentificativoAutomatico, cognome, nome, codiceFiscale, descrizioneVisita, cognomeFisio, nomeFisio, anno, mese, giorno, ora, minuto);
                         System.out.println("Il parametro visitaSvolta viene impostato automaticamente su N!");
                         
                         try
                         {
                             c1.registraPrenotazione(visita); 
+                            prossimoCodiceIdentificativoAutomatico++;
                             System.out.println("Ok, inserimento eseguito correttamente!");
                         }
                         catch(EccezionePosizioneNonValida e1)

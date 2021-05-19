@@ -28,7 +28,6 @@ public class Visita implements Serializable
     //Costruttore.
     public Visita(int codiceIdentificativo, String cognome, String nome, String CFPaziente, String descrizioneVisita, String cognomeFisioterapista, String nomeFisioterapista, int anno, int mese, int giorno, int ora, int minuto) 
     {
-        //CHIEDERE SE IL CODICE IDENTIFICATIVO DEVE ESSERE ASSEGNATO AUTOMATICAMENTE O NO.
         this.codiceIdentificativo=codiceIdentificativo;
         this.cognome=cognome;
         this.nome=nome;
@@ -43,6 +42,7 @@ public class Visita implements Serializable
     //Costruttore di copia.
     public Visita(Visita visita)
     {
+        //CHIEDERE SE VA BENE COSI(CODICE ID).
         codiceIdentificativo=visita.getCodiceIdentificativo();
         cognome=visita.getCognome();
         nome=visita.getNome();
@@ -116,13 +116,7 @@ public class Visita implements Serializable
         return visitaSvolta;
     }
     
-    //Setter.
-    //CHIEDERE SE TENERLO OPPURE NO.
-    public void setCodiceIdentificativo(int codiceIdentificativo)
-    {
-        this.codiceIdentificativo=codiceIdentificativo;
-    }
-    
+    //Setter.  
     public void setCognome(String cognome)
     {
         this.cognome=cognome;
