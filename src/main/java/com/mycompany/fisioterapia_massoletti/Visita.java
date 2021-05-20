@@ -42,7 +42,6 @@ public class Visita implements Serializable
     //Costruttore di copia.
     public Visita(Visita visita)
     {
-        //CHIEDERE SE VA BENE COSI(CODICE ID).
         codiceIdentificativo=visita.getCodiceIdentificativo();
         cognome=visita.getCognome();
         nome=visita.getNome();
