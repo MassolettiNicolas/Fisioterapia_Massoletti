@@ -147,7 +147,7 @@ public class Centro implements Serializable
         String confronto="N";   //Controllo se la visita è già stata eseguita e se è vero, non la eseguo la seconda volta.
         String visitaScelta="";
         LocalDateTime confrontoVisita=null;   //CHIEDERE COME FARE.
-        confrontoVisita.of(anno, mese, giorno, ora, minuto);
+        confrontoVisita=confrontoVisita.of(anno, mese, giorno, ora, minuto);
         
         for(int i=0;i<getNVisitePresenti();i++)
         {

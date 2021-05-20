@@ -1,2 +1,2 @@
-1;Massoletti;Nicolas;abcd;massaggio;Bonsi;Giuseppe;2021-05-23T04:50;N;
-2;Massoletti;Nicolas;abc;forza;Surini;Davide;2021-05-19T17:50;N;
+1;Massoletti;Nicolas;dgvfwe;massaggio;Bonsi;;2021-01-23T12:11;N;
+1;Massoletti;Nicolas;abcde;massaggio;Bonsi;Giuseppe;2021-01-01T10:30;S;

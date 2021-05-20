@@ -40,7 +40,7 @@ public class Main
         vociMenu[8]="Salva dati";
         
         //Deserializzazione.
-        //CONTROLLARE PERCHE' NON FUNZIONA.
+        //Se modifico il codice è normale che non carichi i dati la prima volta ma devo prima salvare e poi li caricherà giusti..
         try
         {
             c1=c1.caricaCentro(nomeFileBinario);
