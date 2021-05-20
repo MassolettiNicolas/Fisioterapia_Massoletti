@@ -56,7 +56,6 @@ public class Visita implements Serializable
     //Costruttore di default.
     public Visita()
     {
-        //CHIEDERE SE E' GIUSTO METTERLO A 0.
         codiceIdentificativo=0;
         cognome="";
         nome="";

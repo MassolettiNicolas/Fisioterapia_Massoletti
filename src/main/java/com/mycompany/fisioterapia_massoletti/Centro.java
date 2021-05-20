@@ -60,6 +60,7 @@ public class Centro implements Serializable
     }
     
     //1 --> Registrare la prenotazione di una nuova visita.
+    //CONTROLLA ALTRO REGISTRA.
     public void registraPrenotazione(Visita visita) throws EccezionePosizioneNonValida
     {
         try
