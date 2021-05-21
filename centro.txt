@@ -1,4 +1,4 @@
-1;Massoletti;Nicolas;yewuuyfw;massaggio;Bonsi;Giuseppe;2021-01-01T10:30;N;
-2;Maggioni;Davide;yfrww;controllo ;Giorgi;Matteo;2020-04-06T13:50;N;
-3;Massoletti;Nicolas;wivbw;massaggio;Bonsi;Giuseppe;2021-04-20T17:30;N;
-4;Ducoli;Fau;vwyvbwyri;controllo posturale;Giorgi;Matteo;2020-09-30T10:50;N;
+1;Massoletti;Nicolas;a;massaggio;Bonsi;Giuseppe;2021-02-01T10:30;N;
+2;Giorgi;Luca;c;laserterapia;Giorgi;Matteo;2021-06-03T12:45;S;
+3;Massoletti;Nicolas;d;massaggio defaticante;Surini;Davide;2021-05-20T16:30;N;
+3;Massoletti;Nicolas;d;massaggio defaticante;Surini;Davide;2021-05-20T16:30;N;

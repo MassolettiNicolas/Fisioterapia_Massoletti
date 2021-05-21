@@ -26,6 +26,7 @@ public class Main
         int esitoOperazione;
         int codiceID, anno, mese, giorno, ora, minuto;
         String nome, cognome, nomeFisio, cognomeFisio, codiceFiscale, descrizioneVisita;
+        int codice=0;
         String nomeFileCSV="centro.txt";
         String nomeFileBinario="centro.bin";
         
@@ -44,11 +45,12 @@ public class Main
         try
         {
             c1=c1.caricaVisite(nomeFileBinario);
-            /*for(int i=0;i<c1.getNVisitePresenti();i++)
+            
+            for(int i=0;i<c1.getNVisitePresenti();i++)
             {
                 codice++;
-                c1.setCodiceIdentificativo(i, codice);
-            }*/
+                c1.setCodiceIdentificativo(i,codice);
+            }
             
             System.out.println("Dati caricati correttamente!");
         }
