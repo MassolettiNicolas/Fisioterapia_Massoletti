@@ -235,8 +235,8 @@ public class Centro implements Serializable
         return elencoOrdinato;
     }
     
-    //6 --> Esportare in CSV.
-    public void esportaLibri(String nomeFile) throws IOException, FileException 
+    //6 --> Esportare in CSV le visite presenti.
+    public void esportaVisiteCSV(String nomeFile) throws IOException, FileException 
     {
         TextFile f1=new TextFile(nomeFile,'W');
         Visita visita;
@@ -256,7 +256,7 @@ public class Centro implements Serializable
     //7 --> Salva dati su file binario e carica all'avvio del software.
     //Serializzazione su file binario.
     //Salva dati.
-    public void salvaCentro(String nomeFile) throws FileNotFoundException, IOException
+    public void salvaVisite(String nomeFile) throws FileNotFoundException, IOException
     {
         FileOutputStream f1=new FileOutputStream(nomeFile);
         ObjectOutputStream outputStream=new ObjectOutputStream(f1); 
@@ -266,7 +266,8 @@ public class Centro implements Serializable
     }
     
     //Carica dati.
-    public Centro caricaCentro(String nomeFile) throws FileNotFoundException, IOException, FileException
+    //CHIEDERE SE E' GIUSTO CENTRO.
+    public Centro caricaVisite(String nomeFile) throws FileNotFoundException, IOException, FileException
     {
         FileInputStream f1=new FileInputStream(nomeFile);
         ObjectInputStream inputStream=new ObjectInputStream(f1); 

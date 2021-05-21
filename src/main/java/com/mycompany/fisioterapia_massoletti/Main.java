@@ -43,7 +43,7 @@ public class Main
         //Se modifico il codice è normale che non carichi i dati la prima volta ma devo prima salvare e poi li caricherà giusti.
         try
         {
-            c1=c1.caricaCentro(nomeFileBinario);
+            c1=c1.caricaVisite(nomeFileBinario);
             System.out.println("Dati caricati correttamente!");
         }
         catch(FileNotFoundException ex)
@@ -269,7 +269,7 @@ public class Main
                         System.out.println("ESPORTA IN CSV:");
                         try
                         {
-                            c1.esportaLibri(nomeFileCSV); 
+                            c1.esportaVisiteCSV(nomeFileCSV); 
                             System.out.println("Esportazione avvenuta correttamente su file CSV!");
                         }
                         catch(IOException e1)
@@ -289,7 +289,7 @@ public class Main
                         //Serializzazione.
                         try 
                         {
-                            c1.salvaCentro(nomeFileBinario);
+                            c1.salvaVisite(nomeFileBinario);
                             System.out.println("Dati salvati correttamente!");
                         } 
                         catch (IOException ex) 
