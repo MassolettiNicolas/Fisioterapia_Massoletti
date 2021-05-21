@@ -21,6 +21,7 @@ public class Centro implements Serializable
     private Visita[] calendarioVisite;
     private static int NUM_MAX_VISITE=100;   
     private int nVisitePresenti;   
+    //CHIEDERE SE PER DOCUMENTAZIONE VA BENE VISUALIZZA OPPURE RESTITUISCE UN ARRAY CHE...
     
     //Costruttore.
     /**
@@ -97,7 +98,7 @@ public class Centro implements Serializable
     }
     
     //2 --> Eliminare una visita prenotata, più di un metodo.
-    //CONTROLLARE L'ERRORE.
+    //CONTROLLARE L'ERRORE (NUOVO, SALVA SU FILE E SBAGLIA CODICE ID).
     //Mostra a schermo tutte le visite di un paziente e con il codice identificativo si sceglie quale eliminare.
     /**
      * Metodo che consente di contare il numero di prenotazioni di un determinato paziente con nome e cognome 
@@ -182,7 +183,6 @@ public class Centro implements Serializable
     /**
      * Metodo che "sposta" le visite presenti nell'array indietro di una posizione.
      * @param posizione valore intero che rappresenta la posizione in cui si trova la visita da eliminare.
-     * @param arrayVisite array che contiene le visite di un determinato paziente.
      */
     private void aggiornaPosizione(int posizione)
     {
@@ -199,6 +199,21 @@ public class Centro implements Serializable
  
     //3 --> Eseguire una visita.
     //Controllo anche il codice identificativo perchè potrebbero esserci visite uguali.
+    /**
+     * Metodo che simula l'esecuzione di una visita impostando l'attributo visitaSvolta su "S".
+     * @param codiceID codice identificativo della visita da eseguire.
+     * @param nome nome del paziente della visita da eseguire.
+     * @param cognome cognome del paziente della visita da eseguire.
+     * @param anno anno della visita da eseguire.
+     * @param mese mese della visita da eseguire.
+     * @param giorno giorno della visita da eseguire.
+     * @param ora ora della visita da eseguire.
+     * @param minuto minuto della visita da eseguire.
+     * @return restituisce una stringa che corrisponde al toString della visita corrispondente ai parametri passati con
+     * l'attributo visitaSvolta uguale ad S.
+     * @throws EccezioneVisitaSvolta eccezione che viene sollevata se non c'è nessuna visita che corrisponde ai parametri
+     * passati.
+     */
     public String eseguiVisita(int codiceID, String nome, String cognome, int anno, int mese, int giorno, int ora, int minuto) throws EccezioneVisitaSvolta
     {
         String confronto="N";   //Controllo se la visita è già stata eseguita e se è vero, non la eseguo la seconda volta.
@@ -225,6 +240,15 @@ public class Centro implements Serializable
     }
     
     //4 --> Visualizzare le visite di un determinato giorno.
+    /**
+     * Metodo che consente di visualizzare tutte le prenotazioni per un determinato giorno.
+     * @param anno anno che devono avere le visite.
+     * @param mese mese che devono avere le visite.
+     * @param giorno giorno che devono avere le visite.
+     * @return restituisce un array di visite contenente tutte le visite presenti per quel determinato giorno.
+     * @throws EccezioneNessunaVisita eccezione che viene sollevata quando non è presente nessuna visita per quel 
+     * determinato giorno.
+     */
     public Visita[] visualizzaPrenotazioniPerGiorno(int anno, int mese, int giorno) throws EccezioneNessunaVisita
     {
         int numeroVisitePerGiorno=0;
@@ -258,6 +282,12 @@ public class Centro implements Serializable
     }
     
     //5 --> Visualizzare le visite non ancora svolte in ordine alfabetico per paziente.
+    /**
+     * Metodo che consente di visualizzare tutte le visite non ancora svolte in ordine alfabetico di cognome, poi nome
+     * nel caso il cognome fosse uguale, poi codice fiscale e così per tutti gli attributi.
+     * @return restituisce un array di visite già ordinato contenente tutte le visite non svolte.
+     * @throws EccezioneNessunaVisita eccezione che viene sollevata quando non è presente nessuna visita non svolta.
+     */
     public Visita[] visualizzaVisiteNonSvolteOrdineAlfabetico() throws EccezioneNessunaVisita 
     {
         String confronto="N";   //La stringa che utilizzo per confrontare.
@@ -292,12 +322,24 @@ public class Centro implements Serializable
         return elencoOrdinato;
     }
     
+    /**
+     * Metodo che consente di assegnare il codice identificativo ad ogni visita presente ogni volta che vengono caricate
+     * da file.
+     * @param i indica la visita a cui dev'ssere assegnato il codice.
+     * @param codiceID indica il codice identificativo da assegnare alla visita.
+     */
     public void setCodiceIdentificativo(int i, int codiceID)
     {
         calendarioVisite[i].setCodiceIdentificativo(codiceID);
     }
     
     //6 --> Esportare in CSV le visite presenti.
+    /**
+     * Metodo che consente di esportare tutte le visite presenti su di un file CSV.
+     * @param nomeFile il nome del file CSV su cui esportare le visite.
+     * @throws IOException eccezione che viene sollevata quando risulta impossibile accedere al file.
+     * @throws FileException eccezione che viene sollevata quando non si riesce ad utilizzare un metodo del file.
+     */
     public void esportaVisiteCSV(String nomeFile) throws IOException, FileException 
     {
         TextFile f1=new TextFile(nomeFile,'W');
@@ -318,6 +360,13 @@ public class Centro implements Serializable
     //7 --> Salva dati su file binario e carica all'avvio del software.
     //Serializzazione su file binario.
     //Salva dati.
+    /**
+     * Metodo che consente di salvare i dati su di un file binario.
+     * @param nomeFile nome del file binario su cui vanno salvati i dati.
+     * @throws FileNotFoundException eccezione che viene sollevata quando non si trova il file o comunque quando non 
+     * si riesce ad accedervi.
+     * @throws IOException eccezione che viene sollevata quando risulta impossibile accedere al file.
+     */
     public void salvaVisite(String nomeFile) throws FileNotFoundException, IOException
     {
         FileOutputStream f1=new FileOutputStream(nomeFile);
@@ -328,6 +377,15 @@ public class Centro implements Serializable
     }
     
     //Carica dati.
+    /**
+     * Metodo che consente di caricare i dati da un file binario.
+     * @param nomeFile nome del file binario da cui vanno caricati i dati.
+     * @return restituisce un Centro che contiene tutte le visite che vengono caricate dal file.
+     * @throws FileNotFoundException eccezione che viene sollevata quando non si trova il file o comunque quando non 
+     * si riesce ad accedervi.
+     * @throws IOException eccezione che viene sollevata quando risulta impossibile accedere al file.
+     * @throws FileException eccezione che viene sollevata quando non si riesce ad utilizzare un metodo del file.
+     */
     public Centro caricaVisite(String nomeFile) throws FileNotFoundException, IOException, FileException
     {
         FileInputStream f1=new FileInputStream(nomeFile);
@@ -348,6 +406,10 @@ public class Centro implements Serializable
     
     //toString.
     //Override.
+    /**
+     * Metodo che consente di visualizzare tutte le visite presenti con tutti i loro attributi.
+     * @return restituisce una stringa che contiene tutte le visite con i loro attributi.
+     */
     public String toString()
     {
         String s="";
