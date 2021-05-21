@@ -5,22 +5,34 @@
  */
 package com.mycompany.fisioterapia_massoletti;
 
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author nicio
+ * @author Nicolas
  */
 public class CentroTest 
 {
+    Centro c1;
+    @Before
+    public void inizializzazione()
+    {
+       c1=new Centro();
+    }
+    
     /**
      * Test of getNumMaxVisite method, of class Centro.
      */
     @Test
     public void testGetNumMaxVisite() 
     {
+        int atteso, attuale;
         
+        atteso=100;
+        attuale=c1.getNumMaxVisite();
+        
+        assertEquals("Numero massimo di visite:", atteso, attuale);
     }
 
     /**
