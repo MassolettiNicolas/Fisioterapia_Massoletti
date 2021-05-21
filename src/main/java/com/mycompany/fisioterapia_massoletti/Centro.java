@@ -407,7 +407,8 @@ public class Centro implements Serializable
     //toString.
     //Override.
     /**
-     * Metodo che consente di visualizzare tutte le visite presenti con tutti i loro attributi.
+     * Metodo che consente di visualizzare tutte le visite presenti con tutti i loro attributi grazie al metodo toString
+     * della classe Visita (metodo ridefinito, override).
      * @return restituisce una stringa che contiene tutte le visite con i loro attributi.
      */
     public String toString()
@@ -424,4 +425,6 @@ public class Centro implements Serializable
         
         return s;
     }
+    
+    //CHIEDERE SE FARE EQUALS ANCHE QUI.
 }
