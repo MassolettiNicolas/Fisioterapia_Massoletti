@@ -1,4 +1,1 @@
-1;Massoletti;Nicolas;a;massaggio;Bonsi;Giuseppe;2021-02-01T10:30;N;
-2;Giorgi;Luca;c;laserterapia;Giorgi;Matteo;2021-06-03T12:45;S;
-3;Massoletti;Nicolas;d;massaggio defaticante;Surini;Davide;2021-05-20T16:30;N;
-3;Massoletti;Nicolas;d;massaggio defaticante;Surini;Davide;2021-05-20T16:30;N;
+1;Massoletti;Nicolas;vuwvrwu;massaggio;Bonsi;Giuseppe;2021-01-04T10:55;N;

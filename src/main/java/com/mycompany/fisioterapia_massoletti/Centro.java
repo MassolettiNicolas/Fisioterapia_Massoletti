@@ -139,6 +139,7 @@ public class Centro implements Serializable
      */
     public Visita[] mostraPrenotazioni(String cognomePaziente, String nomePaziente, int lunghezzaArray) throws EccezioneNessunaVisita
     {
+        //RIMANE DENTRO UNA VISITA DOPPIA E QUINDI SFORA L'ARRAY.
         int c=0;
         Visita[] arrayVisite=new Visita[lunghezzaArray];
         
@@ -186,15 +187,12 @@ public class Centro implements Serializable
      */
     private void aggiornaPosizione(int posizione)
     {
-        for(int i=posizione;i<getNVisitePresenti()-1;i++)
+        for(int i=posizione;i<getNVisitePresenti()-1;i++)   //Sugli esempi era -2,
         {
-            if(calendarioVisite[i]!=null)
-            {
-                calendarioVisite[i]=calendarioVisite[i+1];
-            }  
+            calendarioVisite[i]=calendarioVisite[i+1];
         }
         
-        nVisitePresenti--;
+        this.nVisitePresenti--;
     }
  
     //3 --> Eseguire una visita.

@@ -26,7 +26,7 @@ public class Main
         int esitoOperazione;
         int codiceID, anno, mese, giorno, ora, minuto;
         String nome, cognome, nomeFisio, cognomeFisio, codiceFiscale, descrizioneVisita;
-        int codice=0;
+        int codice=0;   //Serve per assegnare i codici quando vengono caricati i dati da file.
         String nomeFileCSV="centro.txt";
         String nomeFileBinario="centro.bin";
         
@@ -115,7 +115,7 @@ public class Main
                         try
                         {
                             c1.registraPrenotazione(visita); 
-                            prossimoCodiceIdentificativoAutomatico++;
+                            prossimoCodiceIdentificativoAutomatico++;   
                             System.out.println("Ok, inserimento eseguito correttamente!");
                         }
                         catch(EccezionePosizioneNonValida e1)
