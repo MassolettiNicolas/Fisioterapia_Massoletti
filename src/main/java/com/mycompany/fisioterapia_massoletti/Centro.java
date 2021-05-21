@@ -340,4 +340,21 @@ public class Centro implements Serializable
             throw new FileException("Errore nella lettura del file!");
         }
     }
+    
+    //toString.
+    //Override.
+    public String toString()
+    {
+        String s="";
+        
+        for(int i=0;i<calendarioVisite.length;i++)
+        {
+            if(calendarioVisite[i]!=null)
+            {
+                s=s+calendarioVisite[i].toString()+"\n";
+            }
+        }
+        
+        return s;
+    }
 }
