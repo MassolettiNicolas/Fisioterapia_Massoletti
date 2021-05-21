@@ -100,7 +100,7 @@ public class Centro implements Serializable
     //CONTROLLARE L'ERRORE.
     //Mostra a schermo tutte le visite di un paziente e con il codice identificativo si sceglie quale eliminare.
     /**
-     * Metodo che consente di contare il numero di prenotazioni di un determinato cliente con nome e cognome 
+     * Metodo che consente di contare il numero di prenotazioni di un determinato paziente con nome e cognome 
      * passati come parametro.
      * @param cognomePaziente cognome del paziente di cui si vogliono contare le prenotazioni presenti.
      * @param nomePaziente nome del paziente di cui si vogliono contare le prenotazioni presenti.
@@ -125,12 +125,23 @@ public class Centro implements Serializable
         return n;
     }
     
+    /**
+     * Metodo che costruisce un array di visite con lunghezza uguale al numero di visite che restituisce il metodo 
+     * numeroPrenotazioniPaziente e lo riempie con le visite di un determinato paziente con nome e cognome 
+     * passati come parametro.
+     * @param cognomePaziente cognome del paziente di cui si vogliono inserire le prenotazioni.
+     * @param nomePaziente nome del paziente di cui si vogliono inserire le prenotazioni.
+     * @param lunghezzaArray valore intero che viene dato dal metodo numeroPrenotazioniPaziente e viene utilizzato
+     * come lunghezza dell'array da restituire.
+     * @return restituisce un array contenente le visite del paziente specificato come parametro.
+     * @throws EccezioneNessunaVisita eccezione che viene sollevata quando non è presente nessuna visita.
+     */
     public Visita[] mostraPrenotazioni(String cognomePaziente, String nomePaziente, int lunghezzaArray) throws EccezioneNessunaVisita
     {
         int c=0;
         Visita[] arrayVisite=new Visita[lunghezzaArray];
         
-        for(int i=0;i<arrayVisite.length;i++)
+        for(int i=0;i<calendarioVisite.length;i++)
         {
             if(calendarioVisite[i]!=null && calendarioVisite[i].getCognome().compareToIgnoreCase(cognomePaziente)==0 && calendarioVisite[i].getNome().compareToIgnoreCase(nomePaziente)==0)
             {
@@ -145,13 +156,22 @@ public class Centro implements Serializable
         return arrayVisite;
     }
     
+    /**
+     * Metodo che elimina una prenotazione dell'array passato come parametro in base al 
+     * codice identificativo passato anch'esso come parametro.
+     * @param codiceID codice che identifica una specifica visita, in questo caso quella da eliminare.
+     * @param arrayVisite array che contiene le visite di un determinato paziente.
+     * @return restituisce un intero che indica se l'eliminazione è andata a buon fine.
+     * @throws EccezioneCodiceIdentificativo eccezione che viene sollevata se, il codice identificativo passato
+     * come parametro, non corrisponde a nessuna visita presente.
+     */
     public int rimuoviPrenotazione(int codiceID, Visita[] arrayVisite) throws EccezioneCodiceIdentificativo
     {
-        for(int i=0;i<getNVisitePresenti();i++)
+        for(int i=0;i<arrayVisite.length;i++)
         {
             if(arrayVisite[i]!=null && arrayVisite[i].getCodiceIdentificativo()==codiceID)
             {
-                aggiornaPosizione(i, arrayVisite);
+                aggiornaPosizione(i);
                 return 0;
             }
         }
@@ -159,12 +179,19 @@ public class Centro implements Serializable
         throw new EccezioneCodiceIdentificativo();   //Nessuna prenotazione per questo codice identificativo.
     }
     
-    private void aggiornaPosizione(int posizione, Visita[] arrayVisite)
+    /**
+     * Metodo che "sposta" le visite presenti nell'array indietro di una posizione.
+     * @param posizione valore intero che rappresenta la posizione in cui si trova la visita da eliminare.
+     * @param arrayVisite array che contiene le visite di un determinato paziente.
+     */
+    private void aggiornaPosizione(int posizione)
     {
         for(int i=posizione;i<getNVisitePresenti()-1;i++)
         {
-            calendarioVisite[i]=calendarioVisite[i+1];
-            arrayVisite[i]=arrayVisite[i+1];
+            if(calendarioVisite[i]!=null)
+            {
+                calendarioVisite[i]=calendarioVisite[i+1];
+            }  
         }
         
         nVisitePresenti--;

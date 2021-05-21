@@ -140,7 +140,10 @@ public class Main
                             lunghezzaArray=c1.numeroPrenotazioniPaziente(cognome, nome);
                             arrayVisite=c1.mostraPrenotazioni(cognome, nome, lunghezzaArray);
                             for(int i=0;i<arrayVisite.length;i++)
-                                System.out.println(arrayVisite[i]);
+                            {
+                                if(arrayVisite[i]!=null)
+                                   System.out.println(arrayVisite[i]); 
+                            }                               
                             System.out.println("Codice della visita da eliminare --> ");                  
                             codiceID=tastiera.nextInt();
                             
@@ -252,7 +255,7 @@ public class Main
                     case 6:
                     {
                         Visita[] arrayVisiteNonSvolte;
-                        System.out.println("VISUALIZZA NON SVOLTE IN ORDINE ALFABETICO:");  
+                        System.out.println("VISUALIZZA VISITE NON SVOLTE IN ORDINE ALFABETICO:");  
                         
                         try
                         {
