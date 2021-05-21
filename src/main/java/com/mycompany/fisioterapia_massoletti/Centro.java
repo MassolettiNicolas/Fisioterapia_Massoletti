@@ -23,22 +23,39 @@ public class Centro implements Serializable
     private int nVisitePresenti;   
     
     //Costruttore.
+    /**
+     * Costruttore della classe Centro. Inizializzo l'array di visite e inizializzo a 0 il numero di visite presenti.
+     */
     public Centro()
     {
         calendarioVisite=new Visita[NUM_MAX_VISITE];
+        this.nVisitePresenti=0;
     }
     
     //Getter.
+    /**
+     * Metodo getter statico che restituisce il numero massimo di visite presenti.
+     * @return restituisce un intero che rappresenta il numero massimo di visite presenti.
+     */
     public static int getNumMaxVisite()
     {
         return NUM_MAX_VISITE;
     }
     
+    /**
+     * Metodo getter che restituisce il numero di visite presenti.
+     * @return restituisce un intero che rappresenta il numero di visite presenti.
+     */
     public int getNVisitePresenti()
     {
         return nVisitePresenti;
     }
     
+    /**
+     * Metodo che consente di visualizzare tutte le visite prenotate.
+     * @return restituisce un array che contiene tutte le visite presenti.
+     * @throws EccezioneNessunaVisita eccezione che viene sollevata quando non è presente nessuna visita. 
+     */
     public Visita[] visualizzaVisite() throws EccezioneNessunaVisita
     {
         Visita[] arrayVisite=new Visita[getNVisitePresenti()];
@@ -60,7 +77,12 @@ public class Centro implements Serializable
     }
     
     //1 --> Registrare la prenotazione di una nuova visita.
-    //CONTROLLA ALTRO REGISTRA.
+    /**
+     * Metodo che consente di registrare una prenotazione.
+     * @param visita passo come parametro una visita che sarà quella che verrà aggiunta.
+     * @throws EccezionePosizioneNonValida eccezione che viene sollevata quando le visite presenti sono uguali 
+     * o maggiori del numero massimo di prenotazioni possibili.
+     */
     public void registraPrenotazione(Visita visita) throws EccezionePosizioneNonValida
     {
         try
@@ -77,6 +99,14 @@ public class Centro implements Serializable
     //2 --> Eliminare una visita prenotata, più di un metodo.
     //CONTROLLARE L'ERRORE.
     //Mostra a schermo tutte le visite di un paziente e con il codice identificativo si sceglie quale eliminare.
+    /**
+     * Metodo che consente di contare il numero di prenotazioni di un determinato cliente con nome e cognome 
+     * passati come parametro.
+     * @param cognomePaziente cognome del paziente di cui si vogliono contare le prenotazioni presenti.
+     * @param nomePaziente nome del paziente di cui si vogliono contare le prenotazioni presenti.
+     * @return restituisce un intero che rappresenta il numero di prenotazioni di un determinato cliente.
+     * @throws EccezioneNessunaVisita eccezione che viene sollevata quando non è presente nessuna visita.
+     */
     public int numeroPrenotazioniPaziente(String cognomePaziente, String nomePaziente) throws EccezioneNessunaVisita
     {
         int n=0;
@@ -266,7 +296,6 @@ public class Centro implements Serializable
     }
     
     //Carica dati.
-    //CHIEDERE SE E' GIUSTO CENTRO.
     public Centro caricaVisite(String nomeFile) throws FileNotFoundException, IOException, FileException
     {
         FileInputStream f1=new FileInputStream(nomeFile);

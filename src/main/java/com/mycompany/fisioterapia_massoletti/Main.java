@@ -44,6 +44,12 @@ public class Main
         try
         {
             c1=c1.caricaVisite(nomeFileBinario);
+            /*for(int i=0;i<c1.getNVisitePresenti();i++)
+            {
+                codice++;
+                c1.setCodiceIdentificativo(i, codice);
+            }*/
+            
             System.out.println("Dati caricati correttamente!");
         }
         catch(FileNotFoundException ex)
