@@ -15,7 +15,7 @@ import java.time.*;
  *
  * @author Nicolas
  */
-public class Centro implements Serializable
+public class Centro implements Serializable 
 {
     //Attributi.
     private Visita[] calendarioVisite;

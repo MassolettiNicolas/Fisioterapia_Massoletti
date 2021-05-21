@@ -41,7 +41,8 @@ public class Main
         vociMenu[8]="Salva dati";
         
         //Deserializzazione.
-        //Se modifico il codice è normale che non carichi i dati la prima volta ma devo prima salvare e poi li caricherà giusti.
+        //Se modifico il codice è normale che non carichi i dati la prima volta, ma devo prima salvare 
+        //e poi li caricherà giusti.
         try
         {
             c1=c1.caricaVisite(nomeFileBinario);

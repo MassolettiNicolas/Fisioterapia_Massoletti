@@ -12,7 +12,7 @@ import java.time.*;
  *
  * @author Nicolas
  */
-public class Visita implements Serializable
+public class Visita implements Serializable 
 {
     //Attributi.
     private int codiceIdentificativo;   //Un codice numerico univoco per ogni paziente.
