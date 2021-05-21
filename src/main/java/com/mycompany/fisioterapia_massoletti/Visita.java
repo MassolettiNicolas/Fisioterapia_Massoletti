@@ -114,7 +114,12 @@ public class Visita implements Serializable
         return visitaSvolta;
     }
     
-    //Setter.  
+    //Setter. 
+    public void setCodiceIdentificativo(int codiceIdentificativo)
+    {
+        this.codiceIdentificativo=codiceIdentificativo;
+    }
+    
     public void setCognome(String cognome)
     {
         this.cognome=cognome;

@@ -292,6 +292,11 @@ public class Centro implements Serializable
         return elencoOrdinato;
     }
     
+    public void setCodiceIdentificativo(int i, int codiceID)
+    {
+        calendarioVisite[i].setCodiceIdentificativo(codiceID);
+    }
+    
     //6 --> Esportare in CSV le visite presenti.
     public void esportaVisiteCSV(String nomeFile) throws IOException, FileException 
     {
