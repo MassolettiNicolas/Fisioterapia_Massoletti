@@ -33,6 +33,7 @@ public class CentroTest
     @Test
     public void testGetNumMaxVisite() 
     {
+        //Test 1.
         int atteso, attuale;
         
         atteso=100;
@@ -49,55 +50,132 @@ public class CentroTest
     {
          
     }
+    
+    /**
+     * Test of registraPrenotazione method, of class Centro.
+     */
+    @Test
+    public void testRegistraPrenotazione()  
+    {
+        //Test 2.
+        //Test 3.
+    }
+    
+    /*@Test(expected=EccezionePosizioneNonValida.class)
+    public void testCentroPieno() throws EccezionePosizioneNonValida
+    {
+        //Test 4.
+    }*/
 
     /**
      * Test of visualizzaVisite method, of class Centro.
      */
     @Test
-    public void testVisualizzaVisite() throws EccezionePosizioneNonValida 
+    public void testVisualizzaVisite() throws EccezionePosizioneNonValida, EccezioneNessunaVisita 
     {
+        //Test 6.
         c1.registraPrenotazione(v1);
         c1.registraPrenotazione(v2);
-        c1.registraPrenotazione(v3);
+        c1.registraPrenotazione(v3); 
+        Visita[] atteso=new Visita[3];
+        Visita[] attuale;
+        atteso[0]=v1;
+        atteso[1]=v2;
+        atteso[2]=v3;
+        attuale=c1.visualizzaVisite();
+        assertArrayEquals("Visualizzazione di un centro con 3 visite:", atteso, attuale);
     }
 
     @Test(expected=EccezioneNessunaVisita.class)
-    public void testNessunaVisita()
+    public void testNessunaVisita() throws EccezioneNessunaVisita, EccezionePosizioneNonValida, EccezioneCodiceIdentificativo
     {
+        //Test 5.
+        Visita[] atteso={null};
+        Visita[] attuale;
+        attuale=c1.visualizzaVisite();
+        assertArrayEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro vuoto:", atteso, attuale);
         
-    }
-
-    /**
-     * Test of registraPrenotazione method, of class Centro.
-     */
-    @Test
-    public void testRegistraPrenotazione() throws Exception 
-    {
+        //Test 7.
+        int atteso1, attuale1;
+        atteso1=0;
+        attuale1=c1.numeroPrenotazioniPaziente("Massoletti", "Nicolas");
+        assertEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro vuoto:", atteso1, attuale1);
         
-    }
-    
-    @Test(expected=EccezionePosizioneNonValida.class)
-    public void testPosizione()
-    {
+        //Test 8.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3); 
+        int atteso2, attuale2;
+        atteso2=0;
+        attuale2=c1.numeroPrenotazioniPaziente("Maggioni", "Davide");
+        assertEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro senza visite per il paziente specificato:", atteso2, attuale2);
         
+        //Test 11.
+        c1.rimuoviPrenotazione(1);
+        c1.rimuoviPrenotazione(2);
+        c1.rimuoviPrenotazione(3);
+        Visita[] atteso3={null};
+        Visita[] attuale3;
+        attuale3=c1.mostraPrenotazioni("Massoletti", "Nicolas", c1.numeroPrenotazioniPaziente("Massoletti", "Nicolas"));
+        assertArrayEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro vuoto:", atteso3, attuale3);
+        
+        //Test 12.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3); 
+        Visita[] atteso4={null};
+        Visita[] attuale4;
+        attuale4=c1.mostraPrenotazioni("Maggioni", "Davide", c1.numeroPrenotazioniPaziente("Maggioni", "Davide"));
+        assertArrayEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro senza visite per il paziente specificato:", atteso4, attuale4);
     }
 
     /**
      * Test of numeroPrenotazioniPaziente method, of class Centro.
      */
     @Test
-    public void testNumeroPrenotazioniPaziente() throws Exception 
+    public void testNumeroPrenotazioniPaziente() throws EccezionePosizioneNonValida, EccezioneNessunaVisita  
     {
+        //Test 9.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        int atteso, attuale;
+        atteso=1;
+        attuale=c1.numeroPrenotazioniPaziente("Massoletti", "Nicolas");
+        assertEquals("Numero di prenotazioni per il paziente specifico:", atteso, attuale);
         
+        //Test 10.
+        //Le registrazioni aggiunte prima rimangono.
+        c1.registraPrenotazione(v3);
+        int atteso1, attuale1;
+        atteso1=2;
+        attuale1=c1.numeroPrenotazioniPaziente("Massoletti", "Nicolas");
+        assertEquals("Numero di prenotazioni per il paziente specifico:", atteso1, attuale1);
     }
 
     /**
      * Test of mostraPrenotazioni method, of class Centro.
      */
     @Test
-    public void testMostraPrenotazioni() throws Exception 
+    public void testMostraPrenotazioni() throws EccezionePosizioneNonValida, EccezioneNessunaVisita 
     {
+        //Test 13.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        Visita[] atteso={null};
+        Visita[] attuale;
+        atteso[0]=v1;
+        attuale=c1.mostraPrenotazioni("Massoletti", "Nicolas", c1.numeroPrenotazioniPaziente("Massoletti", "Nicolas"));
+        assertArrayEquals("Array di prenotazioni per il paziente specifico:", atteso, attuale);
         
+        //Test 14.
+        //Le registrazioni aggiunte prima rimangono.
+        /*c1.registraPrenotazione(v3);
+        Visita[] atteso1={null};
+        Visita[] attuale1;
+        atteso1[0]=v1;
+        atteso1[1]=v3;
+        attuale1=c1.mostraPrenotazioni("Massoletti", "Nicolas", c1.numeroPrenotazioniPaziente("Massoletti", "Nicolas"));
+        assertArrayEquals("Array di prenotazioni per il paziente specifico:", atteso1, attuale1);*/
     }
 
     /**

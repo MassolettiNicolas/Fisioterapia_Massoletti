@@ -137,7 +137,6 @@ public class Centro implements Serializable
      */
     public Visita[] mostraPrenotazioni(String cognomePaziente, String nomePaziente, int lunghezzaArray) throws EccezioneNessunaVisita
     {
-        //RIMANE DENTRO UNA VISITA DOPPIA E QUINDI SFORA L'ARRAY.
         int c=0;
         Visita[] arrayVisite=new Visita[lunghezzaArray];
         
@@ -157,10 +156,8 @@ public class Centro implements Serializable
     }
     
     /**
-     * Metodo che elimina una prenotazione dell'array passato come parametro in base al 
-     * codice identificativo passato anch'esso come parametro.
+     * Metodo che elimina una prenotazione in base al codice identificativo passato come parametro.
      * @param codiceID codice che identifica una specifica visita, in questo caso quella da eliminare.
-     * @param arrayVisite array che contiene le visite di un determinato paziente.
      * @return restituisce un intero che indica se l'eliminazione è andata a buon fine.
      * @throws EccezioneCodiceIdentificativo eccezione che viene sollevata se, il codice identificativo passato
      * come parametro, non corrisponde a nessuna visita presente.
@@ -175,7 +172,7 @@ public class Centro implements Serializable
                 return 0;
             }
         }
-        
+
         throw new EccezioneCodiceIdentificativo();   //Nessuna prenotazione per questo codice identificativo.
     }
     
@@ -215,7 +212,7 @@ public class Centro implements Serializable
     {
         String confronto="N";   //Controllo se la visita è già stata eseguita e se è vero, non la eseguo la seconda volta.
         String visitaScelta="";
-        LocalDateTime confrontoVisita=null;   //CHIEDERE COME FARE.
+        LocalDateTime confrontoVisita=null;   
         confrontoVisita=confrontoVisita.of(anno, mese, giorno, ora, minuto);
         
         for(int i=0;i<getNVisitePresenti();i++)
@@ -229,7 +226,7 @@ public class Centro implements Serializable
                 }
             } 
         }
-        
+        //FARE CONTROLLO SE SONO PRESENTI VISITE O NO ALL'INIZIO E SE NO ECCEZIONENESSUNAVISITA.
         if(visitaScelta.compareToIgnoreCase("")==0)
             throw new EccezioneVisitaSvolta();   //Nessuna visita da svolgere con questi parametri.
         
