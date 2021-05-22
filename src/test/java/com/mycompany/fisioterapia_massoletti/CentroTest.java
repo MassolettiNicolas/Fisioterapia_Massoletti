@@ -5,6 +5,7 @@
  */
 package com.mycompany.fisioterapia_massoletti;
 
+import eccezioni.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -14,11 +15,16 @@ import static org.junit.Assert.*;
  */
 public class CentroTest 
 {
+    Visita v1, v2, v3;
     Centro c1;
+    
     @Before
     public void inizializzazione()
     {
        c1=new Centro();
+       v1=new Visita(1, "Massoletti", "Nicolas", "veube", "massaggio", "Bonsi", "Giuseppe", 2021, 4, 5, 16, 30);
+       v2=new Visita(2, "Giorgi", "Luca", "ewuib", "massaggio", "Giorgi", "Matteo", 2021, 6, 13, 15, 00);
+       v3=new Visita(3, "Massoletti", "Nicolas", "eregr", "controllo", "Bonsi", "Giuseppe", 2021, 9, 25, 17, 15);
     }
     
     /**
@@ -48,7 +54,15 @@ public class CentroTest
      * Test of visualizzaVisite method, of class Centro.
      */
     @Test
-    public void testVisualizzaVisite() throws Exception 
+    public void testVisualizzaVisite() throws EccezionePosizioneNonValida 
+    {
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3);
+    }
+
+    @Test(expected=EccezioneNessunaVisita.class)
+    public void testNessunaVisita()
     {
         
     }
@@ -58,6 +72,12 @@ public class CentroTest
      */
     @Test
     public void testRegistraPrenotazione() throws Exception 
+    {
+        
+    }
+    
+    @Test(expected=EccezionePosizioneNonValida.class)
+    public void testPosizione()
     {
         
     }

@@ -21,7 +21,6 @@ public class Centro implements Serializable
     private Visita[] calendarioVisite;
     private static int NUM_MAX_VISITE=100;   
     private int nVisitePresenti;   
-    //CHIEDERE SE PER DOCUMENTAZIONE VA BENE VISUALIZZA OPPURE RESTITUISCE UN ARRAY CHE...
     
     //Costruttore.
     /**
@@ -98,7 +97,6 @@ public class Centro implements Serializable
     }
     
     //2 --> Eliminare una visita prenotata, più di un metodo.
-    //CONTROLLARE L'ERRORE (NUOVO, SALVA SU FILE E SBAGLIA CODICE ID).
     //Mostra a schermo tutte le visite di un paziente e con il codice identificativo si sceglie quale eliminare.
     /**
      * Metodo che consente di contare il numero di prenotazioni di un determinato paziente con nome e cognome 
@@ -424,6 +422,4 @@ public class Centro implements Serializable
         
         return s;
     }
-    
-    //CHIEDERE SE FARE EQUALS ANCHE QUI.
 }
