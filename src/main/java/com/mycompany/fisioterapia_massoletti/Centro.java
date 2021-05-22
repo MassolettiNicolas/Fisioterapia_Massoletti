@@ -167,11 +167,11 @@ public class Centro implements Serializable
      * @throws EccezioneCodiceIdentificativo eccezione che viene sollevata se, il codice identificativo passato
      * come parametro, non corrisponde a nessuna visita presente.
      */
-    public int rimuoviPrenotazione(int codiceID, Visita[] arrayVisite) throws EccezioneCodiceIdentificativo
+    public int rimuoviPrenotazione(int codiceID) throws EccezioneCodiceIdentificativo
     {
-        for(int i=0;i<arrayVisite.length;i++)
+        for(int i=0;i<calendarioVisite.length;i++)
         {
-            if(arrayVisite[i]!=null && arrayVisite[i].getCodiceIdentificativo()==codiceID)
+            if(calendarioVisite[i]!=null && calendarioVisite[i].getCodiceIdentificativo()==codiceID)
             {
                 aggiornaPosizione(i);
                 return 0;
@@ -187,11 +187,12 @@ public class Centro implements Serializable
      */
     private void aggiornaPosizione(int posizione)
     {
-        for(int i=posizione;i<getNVisitePresenti()-1;i++)   //Sugli esempi era -2,
+        for(int i=posizione;i<=getNVisitePresenti()-2;i++)   
         {
             calendarioVisite[i]=calendarioVisite[i+1];
         }
         
+        calendarioVisite[getNVisitePresenti()-1]=null;
         this.nVisitePresenti--;
     }
  

@@ -152,7 +152,7 @@ public class Main
                             
                             try
                             {
-                                esitoOperazione=c1.rimuoviPrenotazione(codiceID, arrayVisite);
+                                esitoOperazione=c1.rimuoviPrenotazione(codiceID);
                                 System.out.println("Eliminazione avvenuta correttamente!");
                             }
                             catch(EccezioneCodiceIdentificativo e1)
