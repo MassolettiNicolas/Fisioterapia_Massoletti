@@ -127,6 +127,8 @@ public class CentroTest
         Visita[] attuale4;
         attuale4=c1.mostraPrenotazioni("Maggioni", "Davide", c1.numeroPrenotazioniPaziente("Maggioni", "Davide"));
         assertArrayEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro senza visite per il paziente specificato:", atteso4, attuale4);
+        
+        //Test 15.
     }
 
     /**
@@ -169,13 +171,12 @@ public class CentroTest
         
         //Test 14.
         //Le registrazioni aggiunte prima rimangono.
-        /*c1.registraPrenotazione(v3);
-        Visita[] atteso1={null};
-        Visita[] attuale1;
-        atteso1[0]=v1;
-        atteso1[1]=v3;
-        attuale1=c1.mostraPrenotazioni("Massoletti", "Nicolas", c1.numeroPrenotazioniPaziente("Massoletti", "Nicolas"));
-        assertArrayEquals("Array di prenotazioni per il paziente specifico:", atteso1, attuale1);*/
+        c1.registraPrenotazione(v3);
+        atteso=new Visita[2];
+        atteso[0]=v1;
+        atteso[1]=v3;
+        attuale=c1.mostraPrenotazioni("Massoletti", "Nicolas", c1.numeroPrenotazioniPaziente("Massoletti", "Nicolas"));
+        assertArrayEquals("Array di prenotazioni per il paziente specifico:", atteso, attuale);
     }
 
     /**
@@ -184,7 +185,14 @@ public class CentroTest
     @Test
     public void testRimuoviPrenotazione() throws Exception 
     {
-        
+        //Test 17.
+        //Test 18.
+    }
+    
+    @Test(expected=EccezioneCodiceIdentificativo.class)
+    public void testCodiceSbagliato() throws EccezioneCodiceIdentificativo
+    {
+        //Test 16.
     }
 
     /**

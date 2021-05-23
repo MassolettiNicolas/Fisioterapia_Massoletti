@@ -159,6 +159,10 @@ public class Main
                             {
                                 System.out.println(e1.toString());
                             }
+                            catch(EccezioneNessunaVisita e1)
+                            {
+                                System.out.println(e1.toString());
+                            }
                         }
                         catch(EccezioneNessunaVisita e1)
                         {
@@ -199,6 +203,10 @@ public class Main
                             System.out.println(visitaScelta);
                         }
                         catch(EccezioneVisitaSvolta e1)
+                        {
+                            System.out.println(e1.toString());
+                        }
+                        catch(EccezioneNessunaVisita e1)
                         {
                             System.out.println(e1.toString());
                         }

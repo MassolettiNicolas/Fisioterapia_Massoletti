@@ -161,9 +161,13 @@ public class Centro implements Serializable
      * @return restituisce un intero che indica se l'eliminazione è andata a buon fine.
      * @throws EccezioneCodiceIdentificativo eccezione che viene sollevata se, il codice identificativo passato
      * come parametro, non corrisponde a nessuna visita presente.
+     * @throws EccezioneNessunaVisita eccezione che viene sollevata se non è presente nessuna visita nel centro.
      */
-    public int rimuoviPrenotazione(int codiceID) throws EccezioneCodiceIdentificativo
+    public int rimuoviPrenotazione(int codiceID) throws EccezioneCodiceIdentificativo, EccezioneNessunaVisita
     {
+        if(getNVisitePresenti()==0)
+            throw new EccezioneNessunaVisita(getNVisitePresenti());
+        
         for(int i=0;i<calendarioVisite.length;i++)
         {
             if(calendarioVisite[i]!=null && calendarioVisite[i].getCodiceIdentificativo()==codiceID)
@@ -207,13 +211,17 @@ public class Centro implements Serializable
      * l'attributo visitaSvolta uguale ad S.
      * @throws EccezioneVisitaSvolta eccezione che viene sollevata se non c'è nessuna visita che corrisponde ai parametri
      * passati.
+     * @throws EccezioneNessunaVisita eccezione che viene sollevata se non è presente nessuna visita nel centro.
      */
-    public String eseguiVisita(int codiceID, String nome, String cognome, int anno, int mese, int giorno, int ora, int minuto) throws EccezioneVisitaSvolta
+    public String eseguiVisita(int codiceID, String nome, String cognome, int anno, int mese, int giorno, int ora, int minuto) throws EccezioneVisitaSvolta, EccezioneNessunaVisita
     {
         String confronto="N";   //Controllo se la visita è già stata eseguita e se è vero, non la eseguo la seconda volta.
         String visitaScelta="";
         LocalDateTime confrontoVisita=null;   
         confrontoVisita=confrontoVisita.of(anno, mese, giorno, ora, minuto);
+        
+        if(getNVisitePresenti()==0)
+            throw new EccezioneNessunaVisita(getNVisitePresenti());
         
         for(int i=0;i<getNVisitePresenti();i++)
         {
@@ -226,7 +234,7 @@ public class Centro implements Serializable
                 }
             } 
         }
-        //FARE CONTROLLO SE SONO PRESENTI VISITE O NO ALL'INIZIO E SE NO ECCEZIONENESSUNAVISITA.
+        
         if(visitaScelta.compareToIgnoreCase("")==0)
             throw new EccezioneVisitaSvolta();   //Nessuna visita da svolgere con questi parametri.
         
