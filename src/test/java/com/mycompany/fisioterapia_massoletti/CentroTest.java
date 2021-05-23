@@ -47,18 +47,39 @@ public class CentroTest
      * Test of getNVisitePresenti method, of class Centro.
      */
     @Test
-    public void testGetNVisitePresenti() 
+    public void testGetNVisitePresenti() throws EccezionePosizioneNonValida
     {
-         
+        //Test 40.
+        int atteso, attuale;
+        atteso=0;
+        attuale=c1.getNVisitePresenti();
+        assertEquals("Nessuna visita presente:", atteso, attuale);
+        
+        //Test 41.
+        c1.registraPrenotazione(v1);
+        int atteso1, attuale1;
+        atteso1=1;
+        attuale1=c1.getNVisitePresenti();
+        assertEquals("1 Visita presente:", atteso1, attuale1);
+        
+        //Test 42.
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3); 
+        int atteso2, attuale2;
+        atteso2=3;
+        attuale2=c1.getNVisitePresenti();
+        assertEquals("3 visite presenti:", atteso2, attuale2);
     }
     
     /**
      * Test of registraPrenotazione method, of class Centro.
      */
     @Test
-    public void testRegistraPrenotazione()  
+    public void testRegistraPrenotazione() throws EccezionePosizioneNonValida  
     {
         //Test 2.
+        
+        
         //Test 3.
     }
     
@@ -130,10 +151,15 @@ public class CentroTest
         assertArrayEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro senza visite per il paziente specificato:", atteso4, attuale4);
         
         //Test 15.
-        //Test 19.
         c1.rimuoviPrenotazione(1);
         c1.rimuoviPrenotazione(2);
         c1.rimuoviPrenotazione(3);
+        int atteso10, attuale10;
+        atteso10=0;
+        attuale10=c1.rimuoviPrenotazione(1);
+        assertEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro vuoto:", atteso1, attuale10);
+        
+        //Test 19.       
         String atteso5, attuale5;
         atteso5="";
         attuale5=c1.eseguiVisita(1, "Nicolas", "Massoletti", 2021, 4, 5, 16, 30);
@@ -231,14 +257,29 @@ public class CentroTest
     public void testRimuoviPrenotazione() throws Exception 
     {
         //Test 17.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3); 
+        int atteso, attuale;
+        atteso=0;
+        attuale=c1.rimuoviPrenotazione(3);
+        assertEquals("Eliminazione di una delle due visite del paziente:", atteso, attuale);
+        
         //Test 18.
     }
     
-    /*@Test(expected=EccezioneCodiceIdentificativo.class)
-    public void testCodiceSbagliato() throws EccezioneCodiceIdentificativo
+    @Test(expected=EccezioneCodiceIdentificativo.class)
+    public void testCodiceSbagliato() throws EccezioneCodiceIdentificativo, EccezionePosizioneNonValida, EccezioneNessunaVisita
     {
         //Test 16.
-    }*/
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3); 
+        int atteso, attuale;
+        atteso=0;
+        attuale=c1.rimuoviPrenotazione(4);
+        assertEquals("Sollevazione dell'eccezione EccezioneCodiceIdentificativo con il centro con 3 visite, ma nessuna con quel codice:", atteso, attuale);
+    }
 
     /**
      * Test of eseguiVisita method, of class Centro.
