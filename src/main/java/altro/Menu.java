@@ -50,7 +50,7 @@ public class Menu
             VisualizzaMenu();
         
             System.out.println("SCELTA --> ");
-        inputUtente=tastiera.nextLine();
+            inputUtente=tastiera.nextLine();
 
             //Verifico che l'input sia numerico.
             inputUtenteOK=true;

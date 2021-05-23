@@ -248,7 +248,7 @@ public class Visita implements Serializable
      */
     public void setAppuntamento(int anno, int mese, int giorno, int ora, int minuto)
     {
-        appuntamento.of(anno, mese, giorno, ora, minuto);
+        this.appuntamento=this.appuntamento.of(anno, mese, giorno, ora, minuto);
     }
     
     /**

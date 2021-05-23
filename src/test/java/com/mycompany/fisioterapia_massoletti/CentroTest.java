@@ -6,6 +6,7 @@
 package com.mycompany.fisioterapia_massoletti;
 
 import eccezioni.*;
+import java.io.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -87,7 +88,7 @@ public class CentroTest
     }
 
     @Test(expected=EccezioneNessunaVisita.class)
-    public void testNessunaVisita() throws EccezioneNessunaVisita, EccezionePosizioneNonValida, EccezioneCodiceIdentificativo
+    public void testNessunaVisita() throws EccezioneNessunaVisita, EccezionePosizioneNonValida, EccezioneCodiceIdentificativo, EccezioneVisitaSvolta
     {
         //Test 5.
         Visita[] atteso={null};
@@ -129,6 +130,50 @@ public class CentroTest
         assertArrayEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro senza visite per il paziente specificato:", atteso4, attuale4);
         
         //Test 15.
+        //Test 19.
+        c1.rimuoviPrenotazione(1);
+        c1.rimuoviPrenotazione(2);
+        c1.rimuoviPrenotazione(3);
+        String atteso5, attuale5;
+        atteso5="";
+        attuale5=c1.eseguiVisita(1, "Nicolas", "Massoletti", 2021, 4, 5, 16, 30);
+        assertEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro vuoto:", atteso5, attuale5);
+        
+        //Test 23.
+        Visita[] atteso6={null};
+        Visita[] attuale6;
+        attuale6=c1.visualizzaPrenotazioniPerGiorno(2021, 1, 2);
+        assertArrayEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro vuoto:", atteso6, attuale6);
+        
+        //Test 24.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3);
+        Visita[] atteso7={null};
+        Visita[] attuale7;
+        attuale7=c1.visualizzaPrenotazioniPerGiorno(2020, 4, 5);
+        assertArrayEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro con 3 visite, ma nessuna corrispondente alla data inserita:", atteso7, attuale7);
+        
+        //Test 27.
+        c1.rimuoviPrenotazione(1);
+        c1.rimuoviPrenotazione(2);
+        c1.rimuoviPrenotazione(3);
+        Visita[] atteso8={null};
+        Visita[] attuale8;
+        attuale8=c1.visualizzaVisiteNonSvolteOrdineAlfabetico();
+        assertArrayEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro vuoto:", atteso8, attuale8);
+        
+        //Test 28.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3); 
+        c1.eseguiVisita(1, "Nicolas", "Massoletti", 2021, 4, 5, 16, 30);
+        c1.eseguiVisita(2, "Luca", "Giorgi", 2021, 6, 13, 15, 00);
+        c1.eseguiVisita(3, "Nicolas", "Massoletti", 2021, 9, 25, 17, 15);
+        Visita[] atteso9={null};
+        Visita[] attuale9;
+        attuale9=c1.visualizzaVisiteNonSvolteOrdineAlfabetico();
+        assertArrayEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con tutte le visite gia' eseguite:", atteso9, attuale9);
     }
 
     /**
@@ -189,11 +234,11 @@ public class CentroTest
         //Test 18.
     }
     
-    @Test(expected=EccezioneCodiceIdentificativo.class)
+    /*@Test(expected=EccezioneCodiceIdentificativo.class)
     public void testCodiceSbagliato() throws EccezioneCodiceIdentificativo
     {
         //Test 16.
-    }
+    }*/
 
     /**
      * Test of eseguiVisita method, of class Centro.
@@ -201,7 +246,39 @@ public class CentroTest
     @Test
     public void testEseguiVisita() throws Exception 
     {
+        //Test 22.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3);
+        String atteso, attuale;
+        attuale=c1.eseguiVisita(1, "Nicolas", "Massoletti", 2021, 4, 5, 16, 30);
+        atteso=v1.toString();
+        assertEquals("Stringa della visita eseguita:", atteso, attuale);
+    }
+    
+    @Test(expected=EccezioneVisitaSvolta.class)
+    public void testVisiteEseguite() throws EccezionePosizioneNonValida, EccezioneVisitaSvolta, EccezioneNessunaVisita, EccezioneCodiceIdentificativo
+    {
+        //Test 20.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3); 
+        c1.eseguiVisita(1, "Nicolas", "Massoletti", 2021, 4, 5, 16, 30);
+        c1.eseguiVisita(2, "Luca", "Giorgi", 2021, 6, 13, 15, 00);
+        c1.eseguiVisita(3, "Nicolas", "Massoletti", 2021, 9, 25, 17, 15);
+        String atteso, attuale;
+        atteso="";
+        attuale=c1.eseguiVisita(1, "Nicolas", "Massoletti", 2021, 4, 5, 16, 30);
+        assertEquals("Sollevazione dell'eccezione EccezioneVisitaSvolta con il centro con tutte le visite gia' eseguite:", atteso, attuale);
         
+        //Test 21.
+        v1.setVisitaSvolta("N");
+        v2.setVisitaSvolta("N");
+        v3.setVisitaSvolta("N"); 
+        String atteso1, attuale1;
+        atteso1="";
+        attuale1=c1.eseguiVisita(6, "Ducoli", "Fau", 2020, 10, 20, 10, 40);
+        assertEquals("Sollevazione dell'eccezione EccezioneVisitaSvolta con dati che non corrispondono a nessuna visita:",atteso1, attuale1);
     }
 
     /**
@@ -210,7 +287,24 @@ public class CentroTest
     @Test
     public void testVisualizzaPrenotazioniPerGiorno() throws Exception 
     {
+        //Test 25.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3); 
+        Visita[] atteso=new Visita[1];
+        Visita[] attuale;
+        atteso[0]=v1;
+        attuale=c1.visualizzaPrenotazioniPerGiorno(2021, 4, 5);
+        assertArrayEquals("Array con la visita corrispondente alla data:", atteso, attuale);
         
+        //Test 26.
+        v2.setAppuntamento(2021, 4, 5, 16, 30);
+        Visita[] atteso1=new Visita[2];
+        Visita[] attuale1;
+        atteso1[0]=v1;
+        atteso1[1]=v2;
+        attuale1=c1.visualizzaPrenotazioniPerGiorno(2021, 4, 5);
+        assertArrayEquals("Array con le visite corrispondenti alla data:", atteso1, attuale1);
     }
 
     /**
@@ -219,16 +313,26 @@ public class CentroTest
     @Test
     public void testVisualizzaVisiteNonSvolteOrdineAlfabetico() throws Exception 
     {
+        //Test 29.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3);
+        c1.eseguiVisita(1, "Nicolas", "Massoletti", 2021, 4, 5, 16, 30);
+        c1.eseguiVisita(2, "Luca", "Giorgi", 2021, 6, 13, 15, 00);
+        Visita[] atteso=new Visita[1];
+        atteso[0]=v3;
+        Visita[] attuale;
+        attuale=c1.visualizzaVisiteNonSvolteOrdineAlfabetico();
+        assertArrayEquals("Array con la visita non svolta:", atteso, attuale);
         
-    }
-
-    /**
-     * Test of setCodiceIdentificativo method, of class Centro.
-     */
-    @Test
-    public void testSetCodiceIdentificativo()
-    {
-        
+        //Test 30.
+        v2.setVisitaSvolta("N");
+        Visita[] atteso1=new Visita[2];
+        atteso1[0]=v2;
+        atteso1[1]=v3;
+        Visita[] attuale1;
+        attuale1=c1.visualizzaVisiteNonSvolteOrdineAlfabetico();
+        assertArrayEquals("Array con le visite non svolte in ordine alfabetico:", atteso1, attuale1);
     }
 
     /**
@@ -237,8 +341,16 @@ public class CentroTest
     @Test
     public void testEsportaVisiteCSV() throws Exception
     {
-        
+        //Test 32.
     }
+    
+    /*@Test(expected=IOException.class)
+    public void testSalvaSuFileInesistente() throws IOException
+    {
+        //Test 31.
+        //Test 33.
+        //Test 35.
+    }*/
 
     /**
      * Test of salvaVisite method, of class Centro.
@@ -246,7 +358,7 @@ public class CentroTest
     @Test
     public void testSalvaVisite() throws Exception 
     {
-        
+        //Test 34.
     }
 
     /**
@@ -255,16 +367,35 @@ public class CentroTest
     @Test
     public void testCaricaVisite() throws Exception 
     {
-        
+        //Test 36.
     }
 
     /**
      * Test of toString method, of class Centro.
      */
     @Test
-    public void testToString()
+    public void testToString() throws EccezionePosizioneNonValida
     {
+        //Test 37.
+        String atteso, attuale;
+        atteso="";
+        attuale=c1.toString();
+        assertEquals("Visualizzo stringhe vuote:", atteso, attuale);
         
+        /*//Test 38.
+        c1.registraPrenotazione(v1);
+        String atteso1, attuale1;
+        atteso1=v1.toString();
+        attuale1=c1.toString();
+        assertEquals("Visualizzo la visita presente:", atteso1, attuale1);*/
+        
+        /*//Test 39.
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3); 
+        String atteso2, attuale2;
+        atteso2=v1.toString()+v2.toString()+v3.toString();
+        attuale2=c1.toString();
+        assertEquals("Visualizzo tutte le visite presenti:", atteso2, attuale2);*/
     }
     
 }

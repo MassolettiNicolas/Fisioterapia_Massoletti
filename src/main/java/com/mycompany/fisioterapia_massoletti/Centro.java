@@ -408,6 +408,7 @@ public class Centro implements Serializable
     
     //toString.
     //Override.
+    //Non viene mai utilizzato visto lo stesso utilizzo del metodo visualizzaVisite().
     /**
      * Metodo che consente di visualizzare tutte le visite presenti con tutti i loro attributi grazie al metodo toString
      * della classe Visita (metodo ridefinito, override).
