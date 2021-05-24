@@ -97,7 +97,6 @@ public class Centro implements Serializable
     }
     
     //2 --> Eliminare una visita prenotata, più di un metodo.
-    //Mostra a schermo tutte le visite di un paziente e con il codice identificativo si sceglie quale eliminare.
     /**
      * Metodo che consente di contare il numero di prenotazioni di un determinato paziente con nome e cognome 
      * passati come parametro.
@@ -263,7 +262,6 @@ public class Centro implements Serializable
             }
         }
         
-        //Se non ci sono visite per quel giorno --> return null.
         if(numeroVisitePerGiorno==0)
             throw new EccezioneNessunaVisita(numeroVisitePerGiorno);   //Nessuna prenotazione.
         
@@ -303,7 +301,6 @@ public class Centro implements Serializable
             }
         }
         
-        //Se non ci sono visite non svolte --> return null.
         if(numeroVisiteNonSvolte==0)
             throw new EccezioneNessunaVisita(numeroVisiteNonSvolte);   //Nessuna prenotazione.
         
@@ -428,4 +425,6 @@ public class Centro implements Serializable
         
         return s;
     }
+    
+    //CHIEDERE SE SERVE EQUALS ANCHE QUI.
 }

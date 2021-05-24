@@ -16,9 +16,13 @@ import static org.junit.Assert.*;
  */
 public class CentroTest 
 {
+    //CHIEDERE SE ECCEZIONI NEL DIAGRAMMA DELLE CLASSI.
     Visita v1, v2, v3;
     Centro c1;
     
+    /**
+     * @Before --> il metodo inizializzazione viene sempre eseguito prima grazie a questo tag.
+     */
     @Before
     public void inizializzazione()
     {
@@ -45,9 +49,10 @@ public class CentroTest
 
     /**
      * Test of getNVisitePresenti method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni.
      */
     @Test
-    public void testGetNVisitePresenti() throws EccezionePosizioneNonValida
+    public void testGetNVisitePresenti() throws Exception
     {
         //Test 38.
         int atteso, attuale;
@@ -73,9 +78,10 @@ public class CentroTest
     
     /**
      * Test of registraPrenotazione method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni.
      */
     @Test
-    public void testRegistraPrenotazione() throws EccezionePosizioneNonValida  
+    public void testRegistraPrenotazione() throws Exception  
     {
         //Test 2.
         c1.registraPrenotazione(v1); 
@@ -87,10 +93,10 @@ public class CentroTest
     
     /**
      * Test of EccezionePosizioneNonValida exception, of class EccezionePosizioneNonValida.
-     * @throws EccezionePosizioneNonValida 
+     * @throws Exception contiene tutte le possibili eccezioni.
      */
     @Test(expected=EccezionePosizioneNonValida.class)
-    public void testCentroPieno() throws EccezionePosizioneNonValida
+    public void testCentroPieno() throws Exception
     {
         //Test 4.
         c1.registraPrenotazione(v1);
@@ -199,9 +205,10 @@ public class CentroTest
 
     /**
      * Test of visualizzaVisite method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni.
      */
     @Test
-    public void testVisualizzaVisite() throws EccezionePosizioneNonValida, EccezioneNessunaVisita 
+    public void testVisualizzaVisite() throws Exception 
     {
         //Test 6.
         c1.registraPrenotazione(v1);
@@ -217,11 +224,11 @@ public class CentroTest
     }
 
     /**
-     * Test of EccezionePosizioneNonValida exception, of class EccezionePosizioneNonValida.
-     * @throws EccezionePosizioneNonValida 
+     * Test of EccezioneNessunaVisita exception, of class EccezioneNessunaVisita.
+     * @throws Exception contiene tutte le possibili eccezioni.
      */
     @Test(expected=EccezioneNessunaVisita.class)
-    public void testNessunaVisita() throws EccezioneNessunaVisita, EccezionePosizioneNonValida, EccezioneCodiceIdentificativo, EccezioneVisitaSvolta
+    public void testNessunaVisita() throws Exception
     {
         //Test 5.
         Visita[] atteso={null};
@@ -316,9 +323,10 @@ public class CentroTest
 
     /**
      * Test of numeroPrenotazioniPaziente method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni. 
      */
     @Test
-    public void testNumeroPrenotazioniPaziente() throws EccezionePosizioneNonValida, EccezioneNessunaVisita  
+    public void testNumeroPrenotazioniPaziente() throws Exception  
     {
         //Test 9.
         c1.registraPrenotazione(v1);
@@ -339,9 +347,10 @@ public class CentroTest
 
     /**
      * Test of mostraPrenotazioni method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni. 
      */
     @Test
-    public void testMostraPrenotazioni() throws EccezionePosizioneNonValida, EccezioneNessunaVisita 
+    public void testMostraPrenotazioni() throws Exception 
     {
         //Test 13.
         c1.registraPrenotazione(v1);
@@ -364,6 +373,7 @@ public class CentroTest
 
     /**
      * Test of rimuoviPrenotazione method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni. 
      */
     @Test
     public void testRimuoviPrenotazione() throws Exception 
@@ -384,8 +394,12 @@ public class CentroTest
         assertEquals("Eliminazione della visita del paziente:", atteso1, attuale1);
     }
     
+    /**
+     * Test of EccezioneCodiceIdentificativo exception, of class EccezioneCodiceIdentificativo.
+     * @throws Exception contiene tutte le possibili eccezioni.
+     */
     @Test(expected=EccezioneCodiceIdentificativo.class)
-    public void testCodiceSbagliato() throws EccezioneCodiceIdentificativo, EccezionePosizioneNonValida, EccezioneNessunaVisita
+    public void testCodiceSbagliato() throws Exception
     {
         //Test 16.
         c1.registraPrenotazione(v1);
@@ -399,6 +413,7 @@ public class CentroTest
 
     /**
      * Test of eseguiVisita method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni. 
      */
     @Test
     public void testEseguiVisita() throws Exception 
@@ -413,8 +428,12 @@ public class CentroTest
         assertEquals("Stringa della visita eseguita:", atteso, attuale);
     }
     
+    /**
+     * Test of EccezioneVisitaSvolta exception, of class EccezioneVisitaSvolta.
+     * @throws Exception contiene tutte le possibili eccezioni.
+     */
     @Test(expected=EccezioneVisitaSvolta.class)
-    public void testVisiteEseguite() throws EccezionePosizioneNonValida, EccezioneVisitaSvolta, EccezioneNessunaVisita, EccezioneCodiceIdentificativo
+    public void testVisiteEseguite() throws Exception
     {
         //Test 20.
         c1.registraPrenotazione(v1);
@@ -440,6 +459,7 @@ public class CentroTest
 
     /**
      * Test of visualizzaPrenotazioniPerGiorno method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni. 
      */
     @Test
     public void testVisualizzaPrenotazioniPerGiorno() throws Exception 
@@ -466,6 +486,7 @@ public class CentroTest
 
     /**
      * Test of visualizzaVisiteNonSvolteOrdineAlfabetico method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni.
      */
     @Test
     public void testVisualizzaVisiteNonSvolteOrdineAlfabetico() throws Exception 
@@ -494,6 +515,7 @@ public class CentroTest
 
     /**
      * Test of esportaVisiteCSV method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni.
      */
     @Test
     public void testEsportaVisiteCSV() throws Exception
@@ -507,6 +529,7 @@ public class CentroTest
 
     /**
      * Test of salvaVisite method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni.
      */
     @Test
     public void testSalvaVisite() throws Exception 
@@ -520,6 +543,7 @@ public class CentroTest
 
     /**
      * Test of caricaVisite method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni.
      */
     /*@Test
     public void testCaricaVisite() throws Exception 
@@ -535,8 +559,12 @@ public class CentroTest
         assertEquals("Carica i dati dal file corretto:", atteso, attuale);
     }*/
     
+    /**
+     * Test of FileNotFoundException exception, of class FileNotFoundException.
+     * @throws Exception contiene tutte le possibili eccezioni.
+     */
     @Test(expected=FileNotFoundException.class)
-    public void testCaricaDaFileInesistente() throws IOException, FileNotFoundException, FileException, EccezionePosizioneNonValida, EccezioneCodiceIdentificativo, EccezioneNessunaVisita
+    public void testCaricaDaFileInesistente() throws Exception
     {
         //Test 33.
         c1.registraPrenotazione(v1);
@@ -555,9 +583,10 @@ public class CentroTest
 
     /**
      * Test of toString method, of class Centro.
+     * @throws Exception contiene tutte le possibili eccezioni.
      */
     @Test
-    public void testToString() throws EccezionePosizioneNonValida
+    public void testToString() throws Exception
     {
         //Test 35.
         String atteso, attuale;
@@ -579,6 +608,5 @@ public class CentroTest
         atteso2=v1.toString()+"\n"+v2.toString()+"\n"+v3.toString()+"\n";
         attuale2=c1.toString();
         assertEquals("Visualizzo tutte le visite presenti:", atteso2, attuale2);
-    }
-    
+    }   
 }
