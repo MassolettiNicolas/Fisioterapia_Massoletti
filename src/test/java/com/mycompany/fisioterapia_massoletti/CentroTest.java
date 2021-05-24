@@ -49,20 +49,20 @@ public class CentroTest
     @Test
     public void testGetNVisitePresenti() throws EccezionePosizioneNonValida
     {
-        //Test 40.
+        //Test 38.
         int atteso, attuale;
         atteso=0;
         attuale=c1.getNVisitePresenti();
         assertEquals("Nessuna visita presente:", atteso, attuale);
         
-        //Test 41.
+        //Test 39.
         c1.registraPrenotazione(v1);
         int atteso1, attuale1;
         atteso1=1;
         attuale1=c1.getNVisitePresenti();
         assertEquals("1 Visita presente:", atteso1, attuale1);
         
-        //Test 42.
+        //Test 40.
         c1.registraPrenotazione(v2);
         c1.registraPrenotazione(v3); 
         int atteso2, attuale2;
@@ -78,16 +78,124 @@ public class CentroTest
     public void testRegistraPrenotazione() throws EccezionePosizioneNonValida  
     {
         //Test 2.
-        
+        c1.registraPrenotazione(v1); 
         
         //Test 3.
+        c1.registraPrenotazione(v2);
+        c1.registraPrenotazione(v3); 
     }
     
-    /*@Test(expected=EccezionePosizioneNonValida.class)
+    /**
+     * Test of EccezionePosizioneNonValida exception, of class EccezionePosizioneNonValida.
+     * @throws EccezionePosizioneNonValida 
+     */
+    @Test(expected=EccezionePosizioneNonValida.class)
     public void testCentroPieno() throws EccezionePosizioneNonValida
     {
         //Test 4.
-    }*/
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v1);
+        //100 visite registrate.
+        c1.registraPrenotazione(v2);
+    }
 
     /**
      * Test of visualizzaVisite method, of class Centro.
@@ -108,6 +216,10 @@ public class CentroTest
         assertArrayEquals("Visualizzazione di un centro con 3 visite:", atteso, attuale);
     }
 
+    /**
+     * Test of EccezionePosizioneNonValida exception, of class EccezionePosizioneNonValida.
+     * @throws EccezionePosizioneNonValida 
+     */
     @Test(expected=EccezioneNessunaVisita.class)
     public void testNessunaVisita() throws EccezioneNessunaVisita, EccezionePosizioneNonValida, EccezioneCodiceIdentificativo, EccezioneVisitaSvolta
     {
@@ -266,6 +378,10 @@ public class CentroTest
         assertEquals("Eliminazione di una delle due visite del paziente:", atteso, attuale);
         
         //Test 18.
+        int atteso1, attuale1;
+        atteso1=0;
+        attuale1=c1.rimuoviPrenotazione(1);
+        assertEquals("Eliminazione della visita del paziente:", atteso1, attuale1);
     }
     
     @Test(expected=EccezioneCodiceIdentificativo.class)
@@ -382,16 +498,12 @@ public class CentroTest
     @Test
     public void testEsportaVisiteCSV() throws Exception
     {
-        //Test 32.
-    }
-    
-    /*@Test(expected=IOException.class)
-    public void testSalvaSuFileInesistente() throws IOException
-    {
         //Test 31.
-        //Test 33.
-        //Test 35.
-    }*/
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2); 
+        c1.registraPrenotazione(v3); 
+        c1.esportaVisiteCSV("centro.txt"); 
+    }
 
     /**
      * Test of salvaVisite method, of class Centro.
@@ -399,16 +511,46 @@ public class CentroTest
     @Test
     public void testSalvaVisite() throws Exception 
     {
-        //Test 34.
+        //Test 32.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2); 
+        c1.registraPrenotazione(v3);
+        c1.salvaVisite("centro.bin"); 
     }
 
     /**
      * Test of caricaVisite method, of class Centro.
      */
-    @Test
+    /*@Test
     public void testCaricaVisite() throws Exception 
     {
-        //Test 36.
+        //Test 34.  
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2); 
+        c1.registraPrenotazione(v3); 
+        c1.salvaVisite("centro.bin"); 
+        Centro atteso, attuale;
+        atteso=c1;
+        attuale=c1.caricaVisite("centro.bin");
+        assertEquals("Carica i dati dal file corretto:", atteso, attuale);
+    }*/
+    
+    @Test(expected=FileNotFoundException.class)
+    public void testCaricaDaFileInesistente() throws IOException, FileNotFoundException, FileException, EccezionePosizioneNonValida, EccezioneCodiceIdentificativo, EccezioneNessunaVisita
+    {
+        //Test 33.
+        c1.registraPrenotazione(v1);
+        c1.registraPrenotazione(v2); 
+        c1.registraPrenotazione(v3); 
+        c1.salvaVisite("centro.bin"); 
+        c1.rimuoviPrenotazione(1);
+        c1.rimuoviPrenotazione(2);
+        c1.rimuoviPrenotazione(3);
+        Centro atteso, attuale;
+        Centro c2=new Centro();
+        atteso=c2;
+        attuale=c1.caricaVisite("fileInesistente.bin");
+        assertEquals("Carica i dati da un file inesistente:", atteso, attuale);
     }
 
     /**
@@ -417,26 +559,26 @@ public class CentroTest
     @Test
     public void testToString() throws EccezionePosizioneNonValida
     {
-        //Test 37.
+        //Test 35.
         String atteso, attuale;
         atteso="";
         attuale=c1.toString();
         assertEquals("Visualizzo stringhe vuote:", atteso, attuale);
         
-        /*//Test 38.
+        //Test 36.
         c1.registraPrenotazione(v1);
         String atteso1, attuale1;
-        atteso1=v1.toString();
+        atteso1=v1.toString()+"\n";
         attuale1=c1.toString();
-        assertEquals("Visualizzo la visita presente:", atteso1, attuale1);*/
+        assertEquals("Visualizzo la visita presente:", atteso1, attuale1);
         
-        /*//Test 39.
+        //Test 37.
         c1.registraPrenotazione(v2);
         c1.registraPrenotazione(v3); 
         String atteso2, attuale2;
-        atteso2=v1.toString()+v2.toString()+v3.toString();
+        atteso2=v1.toString()+"\n"+v2.toString()+"\n"+v3.toString()+"\n";
         attuale2=c1.toString();
-        assertEquals("Visualizzo tutte le visite presenti:", atteso2, attuale2);*/
+        assertEquals("Visualizzo tutte le visite presenti:", atteso2, attuale2);
     }
     
 }
