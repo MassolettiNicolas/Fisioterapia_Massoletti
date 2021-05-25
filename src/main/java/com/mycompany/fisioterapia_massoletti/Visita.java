@@ -281,8 +281,8 @@ public class Visita implements Serializable
     /**
      * Metodo che consente di confrontare due oggetti e di stabilire se essi sono uguali (tutti gli attributi 
      * uguali, metodo ridefinito, override) o meno.
-     * @param o
-     * @return 
+     * @param o riceve come parametro un oggetto che verrà "trasformato" in una Visita che sarà utilizzata per il confronto.
+     * @return restituisce un valore booleano che può essere true nel caso i due oggetti siano uguali, false nel caso siano diversi.
      */
     public boolean equals(Object o)
     {

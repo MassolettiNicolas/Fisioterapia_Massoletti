@@ -16,7 +16,6 @@ import static org.junit.Assert.*;
  */
 public class CentroTest 
 {
-    //CHIEDERE SE ECCEZIONI NEL DIAGRAMMA DELLE CLASSI.
     Visita v1, v2, v3;
     Centro c1;
     
@@ -276,7 +275,7 @@ public class CentroTest
         int atteso10, attuale10;
         atteso10=0;
         attuale10=c1.rimuoviPrenotazione(1);
-        assertEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro vuoto:", atteso1, attuale10);
+        assertEquals("Sollevazione dell'eccezione EccezioneNessunaVisita con il centro vuoto:", atteso10, attuale10);
         
         //Test 19.       
         String atteso5, attuale5;
@@ -524,7 +523,7 @@ public class CentroTest
         c1.registraPrenotazione(v1);
         c1.registraPrenotazione(v2); 
         c1.registraPrenotazione(v3); 
-        c1.esportaVisiteCSV("centro.txt"); 
+        c1.esportaVisiteCSV("centroTest.txt"); 
     }
 
     /**
@@ -538,26 +537,26 @@ public class CentroTest
         c1.registraPrenotazione(v1);
         c1.registraPrenotazione(v2); 
         c1.registraPrenotazione(v3);
-        c1.salvaVisite("centro.bin"); 
+        c1.salvaVisite("centroTest1.bin"); 
     }
 
     /**
      * Test of caricaVisite method, of class Centro.
      * @throws Exception contiene tutte le possibili eccezioni.
      */
-    /*@Test
+    @Test
     public void testCaricaVisite() throws Exception 
     {
         //Test 34.  
         c1.registraPrenotazione(v1);
         c1.registraPrenotazione(v2); 
         c1.registraPrenotazione(v3); 
-        c1.salvaVisite("centro.bin"); 
+        c1.salvaVisite("centroTest1.bin"); 
         Centro atteso, attuale;
         atteso=c1;
-        attuale=c1.caricaVisite("centro.bin");
+        attuale=c1.caricaVisite("centroTest1.bin");
         assertEquals("Carica i dati dal file corretto:", atteso, attuale);
-    }*/
+    }
     
     /**
      * Test of FileNotFoundException exception, of class FileNotFoundException.

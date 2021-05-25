@@ -426,5 +426,32 @@ public class Centro implements Serializable
         return s;
     }
     
-    //CHIEDERE SE SERVE EQUALS ANCHE QUI.
+    //equals.
+    //Override.
+    /**
+     * Metodo che consente di confrontare due oggetti Centro grazie al metodo equals della classe Visita (tutti gli attributi di tutte le visite
+     * uguali, metodo ridefinito, override) e stabilire se essi sono uguali o meno.
+     * @param o riceve come parametro un oggetto che verrà "trasformato" in un Centro che sarà utilizzato per il confronto.
+     * @return restituisce un valore booleano che può essere true nel caso i due oggetti siano uguali, false nel caso siano diversi.
+     */
+    public boolean equals(Object o)
+    {
+        Centro c=(Centro)o;
+        Visita v;
+        for (int i=0;i<getNumMaxVisite();i++)
+        {
+            if (calendarioVisite[i]==null)
+            {
+                if (calendarioVisite[i]!=null)   
+                    return false;
+            }
+            else
+            {
+                v=calendarioVisite[i];
+                if (v==null || calendarioVisite[i].equals(v)==false) 
+                    return false;
+            }
+        }
+        return true;
+    }
 }

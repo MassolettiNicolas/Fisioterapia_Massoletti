@@ -1,0 +1,4 @@
+1-Scrivere nella tabella di test che esporta, salva e carica (su file giusto) lo fanno con dei file diversi da quelli 
+che utilizzo nel main per esportare, salvare e caricare.
+2-il metdo equals non si testa perchè lo testa in automatico con gli assert(scrivi in fondo alla tabella).
+3- documentazione solo centro, visita e test (finita e aggiornata).
