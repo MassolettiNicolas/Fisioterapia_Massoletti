@@ -219,6 +219,7 @@ public class Main
                     case 4:
                     {
                         Visita[] arrayVisite;
+                        System.out.println("VISUALIZZA LE VISITE PRESENTI:");
                         
                         try
                         {
@@ -277,6 +278,10 @@ public class Main
                         catch(EccezioneNessunaVisita e1)
                         {
                             System.out.println(e1.toString());
+                        }
+                        catch(EccezioneVisitaSvolta e1)
+                        {
+                            System.out.println("Le visite presenti sono state svolte tutte!");
                         }
                         
                         System.out.println("Premi un pulsante per continuare.");

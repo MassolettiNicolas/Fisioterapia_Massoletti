@@ -9,7 +9,7 @@ package eccezioni;
  *
  * @author Nicolas
  */
-public class EccezionePosizioneNonValida extends Exception
+public class EccezionePosizioneNonValida extends Exception 
 {
     private int nVisitePresenti;
     private int maxVisite;

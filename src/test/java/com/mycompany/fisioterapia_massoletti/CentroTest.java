@@ -569,7 +569,7 @@ public class CentroTest
         c1.registraPrenotazione(v1);
         c1.registraPrenotazione(v2); 
         c1.registraPrenotazione(v3); 
-        c1.salvaVisite("centro.bin"); 
+        c1.salvaVisite("centroTest1.bin"); 
         c1.rimuoviPrenotazione(1);
         c1.rimuoviPrenotazione(2);
         c1.rimuoviPrenotazione(3);

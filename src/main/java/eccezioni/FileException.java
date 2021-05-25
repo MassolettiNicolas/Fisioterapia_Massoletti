@@ -7,7 +7,7 @@ package eccezioni;
 
 /**
  *
- * @author nicio
+ * @author Nicolas
  */
 public class FileException extends Exception 
 {

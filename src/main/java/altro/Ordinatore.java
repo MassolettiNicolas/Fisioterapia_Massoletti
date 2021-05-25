@@ -9,7 +9,7 @@ import com.mycompany.fisioterapia_massoletti.*;
 
 /**
  *
- * @author nicio
+ * @author Nicolas
  */
 public class Ordinatore 
 {

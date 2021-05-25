@@ -9,7 +9,7 @@ package eccezioni;
  *
  * @author Nicolas
  */
-public class EccezioneCodiceIdentificativo extends Exception
+public class EccezioneCodiceIdentificativo extends Exception 
 {
     public EccezioneCodiceIdentificativo() 
     {

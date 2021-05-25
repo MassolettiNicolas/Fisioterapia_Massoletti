@@ -267,6 +267,7 @@ public class Visita implements Serializable
      * (metodo ridefinito, override).
      * @return restituisce una stringa che contiene tutti gli attributi della visita.
      */
+    @Override
     public String toString()
     {
         String s="";
@@ -284,6 +285,7 @@ public class Visita implements Serializable
      * @param o riceve come parametro un oggetto che verrà "trasformato" in una Visita che sarà utilizzata per il confronto.
      * @return restituisce un valore booleano che può essere true nel caso i due oggetti siano uguali, false nel caso siano diversi.
      */
+    @Override
     public boolean equals(Object o)
     {
         Visita visita;

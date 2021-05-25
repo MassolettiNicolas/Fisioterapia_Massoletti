@@ -288,10 +288,22 @@ public class Centro implements Serializable
      * @return restituisce un array di visite già ordinato contenente tutte le visite non svolte.
      * @throws EccezioneNessunaVisita eccezione che viene sollevata quando non è presente nessuna visita non svolta.
      */
-    public Visita[] visualizzaVisiteNonSvolteOrdineAlfabetico() throws EccezioneNessunaVisita 
+    public Visita[] visualizzaVisiteNonSvolteOrdineAlfabetico() throws EccezioneNessunaVisita, EccezioneVisitaSvolta 
     {
         String confronto="N";   //La stringa che utilizzo per confrontare.
         int numeroVisiteNonSvolte=0;
+        int n=0;
+        
+        for(int j=0;j<getNVisitePresenti();j++)
+        {
+            if(calendarioVisite[j].getVisitaSvolta().compareToIgnoreCase(confronto)==0)
+            {
+                n++;
+            }
+        }
+        
+        if(n==0)
+            throw new EccezioneVisitaSvolta();
         
         for(int i=0;i<getNVisitePresenti();i++)
         {
@@ -411,6 +423,7 @@ public class Centro implements Serializable
      * della classe Visita (metodo ridefinito, override).
      * @return restituisce una stringa che contiene tutte le visite con i loro attributi.
      */
+    @Override
     public String toString()
     {
         String s="";
@@ -434,6 +447,7 @@ public class Centro implements Serializable
      * @param o riceve come parametro un oggetto che verrà "trasformato" in un Centro che sarà utilizzato per il confronto.
      * @return restituisce un valore booleano che può essere true nel caso i due oggetti siano uguali, false nel caso siano diversi.
      */
+    @Override
     public boolean equals(Object o)
     {
         Centro c=(Centro)o;
